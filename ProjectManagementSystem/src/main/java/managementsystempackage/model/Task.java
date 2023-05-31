@@ -1,4 +1,6 @@
-package managementsystempackage;
+package managementsystempackage.model;
+
+import java.util.Date;
 
 public class Task  {
 
