@@ -2,8 +2,11 @@ package managementsystempackage.model;
 
 import java.util.Date;
 
-public class Task  {
+public class Task extends User {
 
+    private static final String password = "" ;
+    private static final String username = "";
+    private static final int userID = 0;
     private int taskID;
     private String taskName;
     private Date dueDate;
@@ -11,6 +14,8 @@ public class Task  {
 
     public Task(int taskID,String taskName,Date dueDate)
     {
+        super(userID,username,password);
+
         this.taskID = taskID;
         this.taskName = taskName;
         this.dueDate =dueDate;
@@ -49,4 +54,3 @@ public class Task  {
         this.completed = completed;
     }
 }
-
