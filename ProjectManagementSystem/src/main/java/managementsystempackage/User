@@ -1,4 +1,4 @@
-package managementsystempackage
+package managementsystempackage;
 public class User {
 
     private int userID;
