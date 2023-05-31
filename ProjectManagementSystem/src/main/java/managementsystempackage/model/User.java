@@ -1,19 +1,28 @@
 package managementsystempackage.model;
 
-public class User {
 
+import java.util.Date;
+
+public class User extends Event {
+
+    private static final int eventID = 0;
+    private static final String eventName = "";
+    private static final Date start = new Date();
+    private static final Date end = new Date();
     private int userID;
     private String username;
     private String password;
     private boolean isAdmin;
 
-    public User(int userID,String username,String password)
-    {
+    public User(int userID, String username, String password) {
+        super(eventID,eventName,start,end);
         this.userID = userID;
         this.username = username;
         this.password = password;
         this.isAdmin = false;
     }
+
+
 
     public int getUserID() {
         return userID;
@@ -45,6 +54,15 @@ public class User {
 
     public void setAdmin(boolean admin) {
         isAdmin = admin;
+    }
+
+    public void completeTask()
+    {
+
+    }
+    public void Login()
+    {
+
     }
 
 }
