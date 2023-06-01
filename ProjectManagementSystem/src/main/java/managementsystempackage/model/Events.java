@@ -3,14 +3,14 @@ package managementsystempackage.model;
 import java.util.Date;
 
 
-public class Event extends Calendar {
+public class Events extends Calendar {
 
     private int eventID;
     private String eventName;
     private Date start;
     private Date end;
 
-    public Event(int eventID,String eventName,Date start,Date end)
+    public Events(int eventID,String eventName,Date start,Date end)
     {
         this.eventID = eventID;
         this.eventName = eventName;
