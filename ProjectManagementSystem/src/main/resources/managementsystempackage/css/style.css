@@ -1,9 +1,10 @@
-/*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
-*/
-/* 
-    Created on : 31 May 2023, 5:27:20 pm
-    Author     : renza
-*/
 
+.root{
+    --bg-color: #432E5E;
+    --dark-background-color: #2B1B34; 
+    --accent-color: #B83B5E;
+    --transparent-bg: rgba(135, 104, 159, 0.4);
+    --red-color: #EF1010;
+    --text-100: #FFFFFF;
+    --text-200: #C7B8CC;
+}
