@@ -1,10 +1,71 @@
 
 .root{
-    --bg-color: #432E5E;
-    --dark-background-color: #2B1B34; 
-    --accent-color: #B83B5E;
-    --transparent-bg: rgba(135, 104, 159, 0.4);
-    --red-color: #EF1010;
-    --text-100: #FFFFFF;
-    --text-200: #C7B8CC;
+    -bg-color: #432E5E;
+    -dark-background-color: #2B1B34; 
+    -accent-color: #B83B5E;
+    -transparent-color: rgba(135, 104, 159, 0.4);
+    -red-color: #EF1010;
+    -text-100: #FFFFFF;
+    -text-200: #C7B8CC;
 }
+
+.background{
+    -fx-background-color: -bg-color;
+}
+
+.text-field {
+    -fx-font-family: "Arial";
+    -fx-font-size: 16px;
+    -fx-text-fill: -text-100;
+    -fx-background-color: transparent;
+    
+    -fx-border-color: transparent transparent -accent-color transparent;
+    -fx-border-width: 2;
+    -fx-border-style: hidden hidden solid hidden;
+   
+    -fx-padding: 0.1em 0em 0.3em 0em;
+}
+
+.text-field:focused{
+    -fx-border-color: transparent transparent -text-100 transparent;
+    -fx-transition: all 0.3s; 
+
+
+}
+
+.text{
+    -fx-font-family: "Arial";
+}
+
+.dark-background{
+    -fx-background-color: -dark-background-color;
+}
+
+.header{
+    -fx-fill: -text-100;
+    -fx-font-weight: Bold;
+    -fx-font-family: "Arial";
+    -fx-font-size: 32px;
+}
+
+.transparent-background{
+    -fx-background-color: -transparent-color;
+}
+
+.accent-color{
+    -fx-background-color: -accent-color;
+}
+
+.cool-border{
+    -fx-background-radius: 69px;
+}
+
+.action-btn{
+   -fx-background-color: -accent-color;
+   -fx-background-radius: 69px;
+}
+.action-btn:hover{
+    -fx-background-color: -red-color;
+}
+
+
