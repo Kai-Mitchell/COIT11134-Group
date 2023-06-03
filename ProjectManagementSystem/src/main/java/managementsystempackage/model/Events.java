@@ -3,7 +3,7 @@ package managementsystempackage.model;
 import java.util.Date;
 
 
-public class Events extends Calendar {
+public class Events {
 
     private int eventID;
     private String eventName;
