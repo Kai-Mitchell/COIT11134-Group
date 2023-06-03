@@ -3,9 +3,8 @@ package managementsystempackage.model;
 
 import java.util.Date;
 
-public class User extends Event {
+public class User {
 
-    private static final int eventID = 0;
     private static final String eventName = "";
     private static final Date start = new Date();
     private static final Date end = new Date();
@@ -15,7 +14,6 @@ public class User extends Event {
     private boolean isAdmin;
 
     public User(int userID, String username, String password) {
-        super(eventID,eventName,start,end);
         this.userID = userID;
         this.username = username;
         this.password = password;
