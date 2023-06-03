@@ -1,11 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1">
-    
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="717.0" prefWidth="1000.0" styleClass="dark-background" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox layoutX="20.0" layoutY="14.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Pane prefWidth="323.0" />
+            <VBox alignment="TOP_CENTER" prefWidth="352.4">
+               <children>
+                  <Text id="#loginHeader" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="header" text="Event" textAlignment="CENTER">
+                     <VBox.margin>
+                        <Insets top="26.97" />
+                     </VBox.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="header" text="Management System" textAlignment="CENTER">
+                     <VBox.margin>
+                        <Insets top="26.97" />
+                     </VBox.margin>
+                  </Text>
+                  <AnchorPane prefHeight="352.154" prefWidth="200.0">
+                     <VBox.margin>
+                        <Insets top="53.93" />
+                     </VBox.margin>
+                     <children>
+                        <VBox layoutX="3.0" layoutY="53.0" prefHeight="353.0" prefWidth="353.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <padding>
+                              <Insets bottom="75.35" left="47.62" right="47.62" top="75.35" />
+                           </padding>
+                           <children>
+                              <AnchorPane prefHeight="53.14" styleClass="transparent-background">
+                                 <children>
+                                    <TextField alignment="CENTER" focusTraversable="false" layoutX="28.0" layoutY="14.0" prefHeight="29.0" prefWidth="217.0" promptText="Enter Username" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                                    <Text fill="WHITE" layoutX="10.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:">
+                                       <font>
+                                          <Font name="Arial" size="14.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                                 <padding>
+                                    <Insets left="13.49" right="13.49" />
+                                 </padding>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="53.14" styleClass="transparent-background">
+                                 <children>
+                                    <TextField alignment="CENTER" focusTraversable="false" layoutX="28.0" layoutY="14.0" prefHeight="29.0" prefWidth="217.0" promptText="Enter Password" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                                    <Text fill="WHITE" layoutX="10.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:">
+                                       <font>
+                                          <Font name="Arial" size="14.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                                 <padding>
+                                    <Insets left="13.49" right="13.49" />
+                                 </padding>
+                                 <VBox.margin>
+                                    <Insets top="20.62" />
+                                 </VBox.margin>
+                              </AnchorPane>
+                              <Button mnemonicParsing="false" prefHeight="53.14" prefWidth="256.34" styleClass="action-btn" text="Login" textFill="WHITE">
+                                 <VBox.margin>
+                                    <Insets top="20.62" />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </VBox>
+                     </children>
+                     <styleClass>
+                        <String fx:value="background" />
+                        <String fx:value="cool-border" />
+                     </styleClass>
+                  </AnchorPane>
+               </children>
+            </VBox>
+            <Pane HBox.hgrow="ALWAYS" />
+         </children>
+      </HBox>
+   </children>
 </AnchorPane>
