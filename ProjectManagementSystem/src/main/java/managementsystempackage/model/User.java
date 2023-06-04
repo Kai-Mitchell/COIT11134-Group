@@ -13,7 +13,7 @@ public class User {
     private String password;
     private boolean isAdmin;
 
-    public User(int userID, String username, String password) {
+    public User(int userID, String username, String password) { 
         this.userID = userID;
         this.username = username;
         this.password = password;
