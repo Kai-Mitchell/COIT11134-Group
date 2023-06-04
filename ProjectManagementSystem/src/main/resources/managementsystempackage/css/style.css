@@ -12,6 +12,10 @@
 .background{
     -fx-background-color: -bg-color;
 }
+.dark-background{
+    -fx-background-color: -dark-background-color;
+}
+
 
 .text-field {
     -fx-font-family: "Arial";
@@ -37,9 +41,6 @@
     -fx-font-family: "Arial";
 }
 
-.dark-background{
-    -fx-background-color: -dark-background-color;
-}
 
 .header{
     -fx-fill: -text-100;
@@ -65,7 +66,31 @@
    -fx-background-radius: 69px;
 }
 .action-btn:hover{
-    -fx-background-color: -red-color;
+    -fx-background-color: -transparent-color;
+}
+
+.nav-btn{
+    -fx-background-color: -dark-background-color;
+    -fx-text-fill: -text-200;
+    -fx-background-radius: 0;
+    -fx-pref-height: 40.174;
+
+
+}
+
+.nav-btn:hover{
+    -fx-text-fill: -text-100;
+    -fx-font-weight: bold;
+
+}
+
+.selected-nav-btn{
+    -fx-background-color: -accent-color;
+    -fx-text-fill: -text-100;
+    -fx-font-weight: bold;
+    -fx-background-radius: 0;
+    -fx-pref-height: 49.174;
+
 }
 
 
