@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="84.0" prefWidth="778.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementsystempackage.controller.EventCardController">
+   <children>
+      <HBox alignment="CENTER_LEFT" layoutX="144.0" layoutY="-16.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox alignment="CENTER_LEFT" prefHeight="84.0" prefWidth="556.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0">
+                     <padding>
+                        <Insets left="38.0" />
+                     </padding>
+                     <children>
+                        <Text fx:id="txtEventTitle" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Hello World!!">
+                           <font>
+                              <Font name="Arial" size="20.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                     <padding>
+                        <Insets left="38.0" />
+                     </padding>
+                     <children>
+                        <Text fill="#c7b8cc" strokeType="OUTSIDE" strokeWidth="0.0" text="Due:">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="txtEventDueDate" fill="#c7b8cc" strokeType="OUTSIDE" strokeWidth="0.0" text="05 May 2023">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="3.0" />
+                           </HBox.margin>
+                        </Text>
+                        <Text fill="#c7b8cc" strokeType="OUTSIDE" strokeWidth="0.0" text="Tasks:">
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="txtTotalTasks" fill="#c7b8cc" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="3.0" />
+                           </HBox.margin>
+                        </Text>
+                        <Text fill="#c7b8cc" strokeType="OUTSIDE" strokeWidth="0.0" text="Completed Tasks:">
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="txtCompletedTasks" fill="#c7b8cc" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="3.0" />
+                           </HBox.margin>
+                        </Text>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <Pane fx:id="deletePane" prefHeight="84.0" prefWidth="119.0" style="-fx-background-radius: 0  69 69 0;" styleClass="accent-color">
+               <children>
+                  <ImageView fx:id="deleteImage" fitHeight="54.0" fitWidth="54.0" layoutX="27.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/delete.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+         </children>
+      </HBox>
+   </children>
+   <styleClass>
+      <String fx:value="cool-border" />
+      <String fx:value="transparent-background" />
+   </styleClass>
+</AnchorPane>
