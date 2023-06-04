@@ -39,6 +39,7 @@
 
 .text{
     -fx-font-family: "Arial";
+    -fx-text-fill: -text-100;
 }
 
 
@@ -93,4 +94,10 @@
 
 }
 
+.scroll-view{
+    -fx-hbar-policy: never;
+    -fx-vbar-policy: never;
+    -fx-background: transparent;
+    -fx-background-insets: 0;
+}
 
