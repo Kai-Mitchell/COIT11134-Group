@@ -15,7 +15,7 @@
    <children>
       <HBox alignment="CENTER_LEFT" layoutX="144.0" layoutY="-16.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox alignment="CENTER_LEFT" prefHeight="84.0" prefWidth="556.0" HBox.hgrow="ALWAYS">
+            <VBox alignment="CENTER_LEFT" onMouseClicked="#click" prefHeight="84.0" prefWidth="556.0" HBox.hgrow="ALWAYS">
                <children>
                   <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0">
                      <padding>
@@ -83,7 +83,7 @@
                   </HBox>
                </children>
             </VBox>
-            <Pane fx:id="deletePane" prefHeight="84.0" prefWidth="119.0" style="-fx-background-radius: 0  69 69 0;" styleClass="accent-color">
+            <Pane fx:id="deletePane" onMouseClicked="#delete" prefHeight="84.0" prefWidth="119.0" style="-fx-background-radius: 0  69 69 0;" styleClass="accent-color">
                <children>
                   <ImageView fx:id="deleteImage" fitHeight="54.0" fitWidth="54.0" layoutX="27.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
                      <image>
