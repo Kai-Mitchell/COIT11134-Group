@@ -23,7 +23,7 @@
     -fx-text-fill: -text-100;
     -fx-background-color: transparent;
     
-    -fx-border-color: transparent transparent -accent-color transparent;
+    -fx-border-color: transparent transparent -text-200 transparent;
     -fx-border-width: 2;
     -fx-border-style: hidden hidden solid hidden;
    
@@ -31,12 +31,12 @@
 }
 
 .text-field:focused{
-    -fx-border-color: transparent transparent -text-100 transparent;
+    -fx-border-color: transparent transparent -accent-color transparent;
     -fx-transition: all 0.3s; 
 
 
 }
-
+ 
 .text{
     -fx-font-family: "Arial";
     -fx-text-fill: -text-100;
@@ -71,11 +71,11 @@
 }
 
 .action-btn{
-   -fx-background-color: -accent-color;
+    -fx-background-color: -transparent-color;
    -fx-background-radius: 69px;
 }
 .action-btn:hover{
-    -fx-background-color: -transparent-color;
+   -fx-background-color: -accent-color;
 }
 
 .nav-btn{

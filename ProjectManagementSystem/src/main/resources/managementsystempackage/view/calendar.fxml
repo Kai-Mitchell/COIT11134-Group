@@ -32,7 +32,7 @@
             <HBox alignment="CENTER_LEFT" prefHeight="49.174" prefWidth="200.0" styleClass="dark-background">
                <children>
                   <Button mnemonicParsing="false" prefWidth="110.32" styleClass="selected-nav-btn" text="Calendar" />
-                  <Button mnemonicParsing="false" prefWidth="110.32" styleClass="nav-btn" text="Planned Event" />
+                  <Button mnemonicParsing="false" prefWidth="139.0" styleClass="nav-btn" text="Planned Event" />
                   <Button mnemonicParsing="false" prefWidth="139.0" styleClass="nav-btn" text="Completed Events" />
                   <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
                   <Button mnemonicParsing="false" prefWidth="110.32" styleClass="nav-btn" text="Logout" />
