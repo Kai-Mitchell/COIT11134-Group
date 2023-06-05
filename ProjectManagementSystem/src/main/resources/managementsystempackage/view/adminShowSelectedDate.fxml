@@ -16,16 +16,6 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="dark-background" BorderPane.alignment="CENTER">
          <children>
-            <Text fill="#c7b8cc" layoutX="-2.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date:">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-            </Text>
-            <Text fx:id="txtDate" fill="#c7b8cc" layoutX="69.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="06 April 2023">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Text>
             <ScrollPane layoutY="69.0" prefHeight="424.0" prefWidth="778.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <content>
                   <VBox fx:id="vbDisplay" prefHeight="424.0" prefWidth="776.0" spacing="20.0" />
@@ -35,6 +25,20 @@
                   <String fx:value="dark-background" />
                </styleClass>
             </ScrollPane>
+            <HBox alignment="CENTER_LEFT" layoutX="-2.0" layoutY="3.0" prefHeight="29.0" prefWidth="200.0" spacing="10.0">
+               <children>
+                  <Text fill="#c7b8cc" strokeType="OUTSIDE" strokeWidth="0.0" text="Date:">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="txtDate" fill="#c7b8cc" strokeType="OUTSIDE" strokeWidth="0.0" text="06 April 2023">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
          </children>
       </AnchorPane>
    </center>
@@ -42,7 +46,10 @@
       <Pane prefHeight="200.0" prefWidth="110.32" styleClass="dark-background" BorderPane.alignment="CENTER" />
    </left>
    <right>
-      <Pane prefWidth="110.32" styleClass="dark-background" BorderPane.alignment="CENTER" />
+      <Pane prefWidth="110.32" styleClass="dark-background" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane fx:id="sidePane1" layoutX="-653.0" layoutY="-2.0" prefHeight="601.0" prefWidth="764.0" styleClass="background" />
+         </children></Pane>
    </right>
    <top>
       <VBox prefHeight="119.902" styleClass="background" BorderPane.alignment="CENTER">
@@ -50,7 +57,7 @@
             <HBox alignment="CENTER_LEFT" prefHeight="49.174" prefWidth="200.0" styleClass="dark-background">
                <children>
                   <Button mnemonicParsing="false" prefWidth="110.32" styleClass="nav-btn" text="Calendar" />
-                  <Button mnemonicParsing="false" prefWidth="110.32" styleClass="nav-btn" text="Planned Event" />
+                  <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="139.0" styleClass="nav-btn" text="Planned Event" />
                   <Button mnemonicParsing="false" prefWidth="139.0" styleClass="nav-btn" text="Completed Events" />
                   <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
                   <Button mnemonicParsing="false" prefWidth="110.32" styleClass="nav-btn" text="Logout" />
@@ -61,7 +68,7 @@
                   <Insets top="15.86" />
                </VBox.margin>
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="header" text=" Event Menu" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="header2" text=" Event Menu" />
                </children>
             </HBox>
          </children>
