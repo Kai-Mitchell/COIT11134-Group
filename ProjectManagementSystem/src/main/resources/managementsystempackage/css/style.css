@@ -40,6 +40,7 @@
 .text{
     -fx-font-family: "Arial";
     -fx-text-fill: -text-100;
+    -fx-font-size: 14px
 }
 
 
@@ -48,6 +49,13 @@
     -fx-font-weight: Bold;
     -fx-font-family: "Arial";
     -fx-font-size: 32px;
+}
+
+.header2{
+    -fx-fill: -text-100;
+    -fx-font-weight: Bold;
+    -fx-font-family: "Arial";
+    -fx-font-size: 24px;
 }
 
 .transparent-background{
