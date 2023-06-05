@@ -46,7 +46,7 @@ public class AdminShowSelectedDateController implements Initializable {
     private boolean sidePane1IsShowing;
     private ArrayList<Events> eventArray = new ArrayList<>();
     private IEventListener iEventListener;
-    
+    private boolean disableAnimation;
     private Events currentEvent;
     /**
      * Initializes the controller class.
@@ -54,8 +54,10 @@ public class AdminShowSelectedDateController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        disableAnimation = false; // Disable user interaction during animation
         sidePane1IsShowing = true;
-//        sidePane1.setVisible(sidePane1IsShowing);
+        sidePane1.setVisible(!sidePane1IsShowing);
+        showSidePane1();
         fillEventArray();
         addItems();
     } 
@@ -75,6 +77,8 @@ public class AdminShowSelectedDateController implements Initializable {
                 public void onClickEvent(Events event) {
                     getClickedEvent(event);
                     if(currentEvent != null && currentEvent.equals(event) || !sidePane1IsShowing){
+                        sidePane1.setVisible(true);
+
                         showSidePane1();
                         
                     }
@@ -91,53 +95,55 @@ public class AdminShowSelectedDateController implements Initializable {
                 
                 
             };
-        }
-        for(Events e : eventArray ){
-            final Events event = e;
-            //execute task on a separete thread
-             executorService.execute(() -> {
-                try{
-                FXMLLoader loader = new FXMLLoader(App.class.getResource("view/eventCard.fxml")); //selecting fxml file
-                Pane pane = loader.load(); //loading file
-                EventCardController controller = loader.getController();//get fxml controller
-                controller.setCardData(event, iEventListener); //send data to controller
-                
-                 Platform.runLater(() -> {
-                    
-                   vbDisplay.getChildren().add(pane);
+            
+            for(Events e : eventArray ){
+                final Events event = e;
+                //execute task on a separete thread
+                 executorService.execute(() -> {
+                    try{
+                    FXMLLoader loader = new FXMLLoader(App.class.getResource("view/eventCard.fxml")); //selecting fxml file
+                    Pane pane = loader.load(); //loading file
+                    EventCardController controller = loader.getController();//get fxml controller
+                    controller.setCardData(event, iEventListener); //send data to controller
+
+                     Platform.runLater(() -> {
+
+                       vbDisplay.getChildren().add(pane);
+                    });
+
+                    }
+                    catch(IOException ioe){
+                        ioe.printStackTrace();
+                    }
+
+
                 });
 
-                }
-                catch(IOException ioe){
-                    ioe.printStackTrace();
-                }
-                
-                
-            });
-             
+            }
+            executorService.shutdown();
         }
-        executorService.shutdown();
 
     }
     
     private void showSidePane1() {
+        if(!disableAnimation){
+            disableAnimation = true;
+            translationAnimation(0.5, sidePane1, 764, sidePane1IsShowing, () -> disableAnimation = false);
+            sidePane1IsShowing = !sidePane1IsShowing;
         
-//        sidePane1.setVisible(!sidePane1IsShowing);
-        translationAnimation(0.5, sidePane1, 764,sidePane1IsShowing);
-        sidePane1IsShowing = !sidePane1IsShowing;
-    }
-    
-    private void translationAnimation(double duration, Node node, double width, boolean isOpen){
-        if(isOpen){
-            TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(duration), node);
-            translateTransition.setByX(width);
-            translateTransition.play();
-        }else{
-            TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(duration), node);
-            translateTransition.setByX(-width);
-            translateTransition.play();
         }
-        
+    }
+
+    private void translationAnimation(double duration, Node node, double width, boolean isOpen, Runnable onFinished) {
+        TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(duration), node);
+        translateTransition.setByX(isOpen ? width : -width);
+        translateTransition.setOnFinished(event -> {
+            //prevent animation from breaking
+            if (onFinished != null) {
+                onFinished.run();//make pane animetable
+            }
+        });
+        translateTransition.play();
     }
     
     private void getClickedEvent(Events event){
