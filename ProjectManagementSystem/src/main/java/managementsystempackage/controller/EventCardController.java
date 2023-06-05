@@ -14,10 +14,12 @@ import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.ColorInput;
 
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import managementsystempackage.model.Events;
+import managementsystempackage.model.IEventListener;
 /**
  * FXML Controller class
  *
@@ -38,13 +40,20 @@ public class EventCardController implements Initializable {
     private Pane deletePane;
     @FXML
     private ImageView deleteImage;
+    
+    private IEventListener listenerInterface;
+    private Events event;
+    
+    
+    
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        // Create a white rectangle
+        
+        // Creating a white rectangle
         ColorInput whiteRectangle = new ColorInput(0, 0, 54, 54, Color.WHITE);
 
         // Using Blend effect with BlendMode to change deleteImage's color to White
@@ -55,8 +64,21 @@ public class EventCardController implements Initializable {
     }
 
     
-    public void setCardData(int event){
-        txtTotalTasks.setText(String.valueOf(event));
+    @FXML
+    private void click(MouseEvent mouseEvent){
+        listenerInterface.onClickEvent(event);
+    }
+    @FXML
+    private void delete(MouseEvent mouseEvent){
+        listenerInterface.onClickDelete(event);
+    }
+    
+    public void setCardData(Events event, IEventListener listener){
+        this.event = event;
+        this.listenerInterface = listener;
+        txtEventTitle.setText(event.getEventName());
+        txtTotalTasks.setText(String.valueOf(1));
+        txtEventDueDate.setText(event.getEnd().toString());
     }
     
 }
