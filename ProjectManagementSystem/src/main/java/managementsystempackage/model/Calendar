@@ -1,0 +1,16 @@
+package managementsystempackage.model;
+import java.util.ArrayList;
+
+public class Calendar {
+
+    private ArrayList<Events> eventsList;
+
+    public Calendar(ArrayList<Events> eventsList) {
+        this.eventsList = eventsList;
+    }
+
+    public void displayEvent()
+    {
+
+    }
+}
