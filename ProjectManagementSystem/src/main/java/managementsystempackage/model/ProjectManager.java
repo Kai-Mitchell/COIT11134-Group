@@ -1,16 +1,21 @@
 package managementsystempackage.model;
 
-
+import java.util.ArrayList;
 import java.util.Date;
 
 public class ProjectManager extends User {
 
-private boolean isAdmin;
+    private static final int userID=0;
+    private static final String username="";
+    private static final String password = "";
+    private ArrayList<Events> eventsList;
+    private boolean isAdmin;
 
 
 
-    public ProjectManager(int userID, String username, String password) {
+    public ProjectManager(ArrayList<Events> eventsList) {
         super(userID, username, password);
+        this.eventsList = eventsList;
     }
 
 
