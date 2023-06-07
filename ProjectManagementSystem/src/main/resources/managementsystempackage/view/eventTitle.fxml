@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="14.0" prefWidth="79.0" style="-fx-border-color: transparent transparent transparent #B83B5E; -fx-border-width: 4;"  xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text fx:id="txtTitle" fill="#b83b5e" layoutX="10.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hellowo..." wrappingWidth="78.1953125" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+   </children>
+</AnchorPane>
