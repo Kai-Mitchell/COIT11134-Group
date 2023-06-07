@@ -1,4 +1,8 @@
 package managementsystempackage.model;
+/**
+ *
+ * @author gomez
+ */
 
 import java.util.ArrayList;
 import java.util.Date;
