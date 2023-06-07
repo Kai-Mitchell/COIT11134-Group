@@ -37,8 +37,8 @@ public class Calendar {
         this.currentCalendarDate = todaysDate;
         LocalDate currentMonthFirstDay = currentCalendarDate.with(TemporalAdjusters.firstDayOfMonth());
         
-        generateCalendarBoxData(currentMonthFirstDay);
-        return boxArray;
+        
+        return generateCalendarBoxData(currentMonthFirstDay);
 
     }
     
@@ -124,6 +124,7 @@ public class Calendar {
                         
                     }
                 }
+                
                 return boxArray;
             } finally {
                 lock.unlock();//enable editing
