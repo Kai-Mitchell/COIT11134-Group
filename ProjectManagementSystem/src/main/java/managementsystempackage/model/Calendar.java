@@ -1,4 +1,8 @@
 package managementsystempackage.model;
+/**
+ *
+ * @author gomez
+ */
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
