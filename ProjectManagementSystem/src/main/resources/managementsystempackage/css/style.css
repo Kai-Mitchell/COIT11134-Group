@@ -112,6 +112,7 @@
 .calendar-box{
     -fx-background-color: -text-100;
     -fx-border-color: #432E5E;
+    -fx-border-width: 0.5; 
 }
 .calendar-box:hover{
     -fx-background-color: #f6edfa;
@@ -124,4 +125,10 @@
     -fx-font-family: "Arial";
     -fx-font-size: 12px;
 
+}
+.sunday-color{
+    -fx-fill: -accent-color;
+}
+.normal-color{
+    -fx-fill: -dark-background-color;
 }
