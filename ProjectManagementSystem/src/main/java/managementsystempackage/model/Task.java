@@ -5,18 +5,18 @@ package managementsystempackage.model;
  */
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Task implements Serializable{
     private int taskID;
     private int taskEventID;
     private String taskName;
-    private Date dueDate;
+    private LocalDate dueDate;
     private boolean completed;
     ArrayList<User> taskUserList = new ArrayList<>();
     private static int nextTaskID;
 
-    public Task(String taskName, int taskEventID,Date dueDate, ArrayList<User> taskUserList)
+    public Task(String taskName, int taskEventID,LocalDate dueDate, ArrayList<User> taskUserList)
     {
         this.taskName = taskName;
         this.taskEventID = taskEventID;//Event to task refrence
@@ -42,7 +42,7 @@ public class Task implements Serializable{
         return taskName;
     }
 
-    public Date getDueDate() {
+    public LocalDate getDueDate() {
         return dueDate;
     }
 
@@ -64,7 +64,7 @@ public class Task implements Serializable{
         this.taskName = taskName;
     }
 
-    public void setDueDate(Date dueDate) {
+    public void setDueDate(LocalDate dueDate) {
         this.dueDate = dueDate;
     }
 

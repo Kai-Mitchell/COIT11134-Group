@@ -4,18 +4,18 @@ package managementsystempackage.model;
  * @author gomez
  */
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 
 
 public class Events implements Serializable{
 
     private int eventID;
     private String eventName;
-    private Date start;
-    private Date end;
+    private LocalDate start;
+    private LocalDate end;
     private static int nextEventID = 1001;
 
-    public Events(String eventName,Date start,Date end)
+    public Events(String eventName,LocalDate start,LocalDate end)
     {
         setEventID();
         this.eventName = eventName;
@@ -37,11 +37,11 @@ public class Events implements Serializable{
         return eventName;
     }
 
-    public Date getStart() {
+    public LocalDate getStart() {
         return start;
     }
 
-    public Date getEnd() {
+    public LocalDate getEnd() {
         return end;
     }
 
@@ -58,11 +58,11 @@ public class Events implements Serializable{
         this.eventName = eventName;
     }
 
-    public void setStart(Date start) {
+    public void setStart(LocalDate start) {
         this.start = start;
     }
 
-    public void setEnd(Date end) {
+    public void setEnd(LocalDate end) {
         this.end = end;
     }
     

@@ -91,7 +91,7 @@ public class CalendarBoxController implements Initializable {
     private void fillEventArray(){
         final LocalDate currentDate = LocalDate.now();
         for(int i = 0; i < 9; i++){
-            boxEventArray.add(new Events(69, "Hello, World!! "+i, currentDate, currentDate));
+            boxEventArray.add(new Events( "Hello, World!! "+i, currentDate, currentDate));
         }
     }
 }

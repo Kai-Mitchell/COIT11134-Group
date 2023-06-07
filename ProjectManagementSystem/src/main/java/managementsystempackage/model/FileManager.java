@@ -11,7 +11,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Optional;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -162,7 +161,7 @@ public class FileManager {
         userCount = userList.size();
     }
     //add event into eventList
-    public static  void addEventevent(String eventName,Date start,Date end){
+    public static  void addEventevent(String eventName,LocalDate start,LocalDate end){
         Events event = new Events(eventName, start, end);
         eventList.add(event);
         //Alert popup with event info
@@ -174,7 +173,7 @@ public class FileManager {
         eventCount = eventList.size();
     }
     //add task into taskList
-    public static  void addNewtask(String taskName, int taskEventID,Date dueDate, ArrayList<User> taskUserList){
+    public static  void addNewtask(String taskName, int taskEventID,LocalDate dueDate, ArrayList<User> taskUserList){
         Task task = new Task(taskName, taskEventID, dueDate, taskUserList);
         taskList.add(task);
         //Alert popup with task info
