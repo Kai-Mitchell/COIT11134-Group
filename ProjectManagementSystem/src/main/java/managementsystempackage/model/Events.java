@@ -1,18 +1,20 @@
 package managementsystempackage.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 
-public class Events {
+public class Events implements Serializable{
 
     private int eventID;
     private String eventName;
     private Date start;
     private Date end;
+    private static int nextEventID = 1001;
 
-    public Events(int eventID,String eventName,Date start,Date end)
+    public Events(String eventName,Date start,Date end)
     {
-        this.eventID = eventID;
+        setEventID();
         this.eventName = eventName;
         this.start = start;
         this.end = end;
@@ -22,6 +24,10 @@ public class Events {
 
     public int getEventID() {
         return eventID;
+    }
+    
+    public int getNextEventID(){
+        return nextEventID;
     }
 
     public String getEventName() {
@@ -36,8 +42,13 @@ public class Events {
         return end;
     }
 
-    public void setEventID(int eventID) {
-        this.eventID = eventID;
+    public void setEventID() {
+        eventID = nextEventID;
+        nextEventID++;
+    }
+    
+    public static void setNextEventID(int nextEventID) {
+        Events.nextEventID = nextEventID;
     }
 
     public void setEventName(String eventName) {
@@ -51,4 +62,6 @@ public class Events {
     public void setEnd(Date end) {
         this.end = end;
     }
+    
+      
 }

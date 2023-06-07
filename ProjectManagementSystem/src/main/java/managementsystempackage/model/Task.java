@@ -1,29 +1,38 @@
 package managementsystempackage.model;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 
-public class Task extends User {
-
-    private static final String password = "" ;
-    private static final String username = "";
-    private static final int userID = 0;
+public class Task implements Serializable{
     private int taskID;
+    private int taskEventID;
     private String taskName;
     private Date dueDate;
     private boolean completed;
+    ArrayList<User> taskUserList = new ArrayList<>();
+    private static int nextTaskID;
 
-    public Task(int taskID,String taskName,Date dueDate)
+    public Task(String taskName, int taskEventID,Date dueDate, ArrayList<User> taskUserList)
     {
-        super(userID,username,password);
-
-        this.taskID = taskID;
         this.taskName = taskName;
+        this.taskEventID = taskEventID;//Event to task refrence
         this.dueDate =dueDate;
         this.completed = false;
+        this.taskUserList = taskUserList;//User to task reference
+        setTaskID();
     }
 
     public int getTaskID() {
         return taskID;
+    }
+    
+    public int getNextTaskID(){
+        return nextTaskID;
+    }
+    
+    public ArrayList<User> getUserList(){
+        return taskUserList;
     }
 
     public String getTaskName() {
@@ -38,9 +47,15 @@ public class Task extends User {
         return completed;
     }
 
-    public void setTaskID(int taskID) {
-        this.taskID = taskID;
+    public void setTaskID() {
+        taskID = nextTaskID; // set id to next available id
+        nextTaskID++;
     }
+    
+    public static void setNextTaskID(int nexttaskID)
+   {
+      Task.nextTaskID = nextTaskID;
+   }
 
     public void setTaskName(String taskName) {
         this.taskName = taskName;
@@ -52,5 +67,9 @@ public class Task extends User {
 
     public void setCompleted(boolean completed) {
         this.completed = completed;
+    }
+    
+    public void setUserList(ArrayList<User> taskUserList) {
+        this.taskUserList = taskUserList;
     }
 }

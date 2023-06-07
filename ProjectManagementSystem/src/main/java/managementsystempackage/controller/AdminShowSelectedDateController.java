@@ -155,7 +155,7 @@ public class AdminShowSelectedDateController implements Initializable {
     private void fillEventArray(){
         final Date currentDate = new Date();
         for(int i = 0; i < 10; i++){
-            eventArray.add(new Events(69, "Hello, World!! "+i, currentDate, currentDate));
+            eventArray.add(new Events("Hello, World!! "+i, currentDate, currentDate));
         }
     }
     

@@ -1,23 +1,21 @@
 package managementsystempackage.model;
 
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class User {
-
-    private static final String eventName = "";
-    private static final Date start = new Date();
-    private static final Date end = new Date();
+public class User implements Serializable{
     private int userID;
     private String username;
     private String password;
     private boolean isAdmin;
+    private static int nextUserID = 1001;
 
-    public User(int userID, String username, String password) { 
-        this.userID = userID;
+    public User (String username, String password) { 
         this.username = username;
         this.password = password;
         this.isAdmin = false;
+        setUserID();
     }
 
 
@@ -34,14 +32,24 @@ public class User {
         return password;
     }
 
-    public boolean isAdmin() {
+    public boolean getIsAdmin() {
         return isAdmin;
     }
-
-    public void setUserID(int userID) {
-        this.userID = userID;
+    
+    public int getNextUserID(){
+        return nextUserID;
     }
 
+    public void setUserID() {
+        userID = nextUserID; // set id to next available id
+        nextUserID++;
+    }
+
+    public static void setNextUserID(int nextUserID)
+   {
+      User.nextUserID = nextUserID;
+   }
+    
     public void setUsername(String username) {
         this.username = username;
     }
@@ -50,10 +58,10 @@ public class User {
         this.password = password;
     }
 
-    public void setAdmin(boolean admin) {
+    public void setIsAdmin(boolean admin) {
         isAdmin = admin;
     }
-
+       
     public void completeTask()
     {
 
@@ -62,5 +70,5 @@ public class User {
     {
 
     }
-
+   
 }
