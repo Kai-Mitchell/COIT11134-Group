@@ -8,8 +8,8 @@ package managementsystempackage.model;
  *
  * @author renza
  */
-public interface IEventListener {
-    public void onClickEvent( Events event);
-    public void onClickDelete( Events event);
+public interface IEventListener <E> {
+    public void  onClickEvent( E data);
+    public void onClickDelete( E data);
 
 }
