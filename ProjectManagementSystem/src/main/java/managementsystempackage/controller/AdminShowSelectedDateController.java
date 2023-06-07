@@ -45,7 +45,7 @@ public class AdminShowSelectedDateController implements Initializable {
     
     private boolean sidePane1IsShowing;
     private ArrayList<Events> eventArray = new ArrayList<>();
-    private IEventListener iEventListener;
+    private IEventListener<Events> iEventListener;
     private boolean disableAnimation;
     private Events currentEvent;
     /**
@@ -71,7 +71,7 @@ public class AdminShowSelectedDateController implements Initializable {
         
         if(!eventArray.isEmpty()){
            // getChosenCardView(cardViewArray.get(0));
-            iEventListener = new IEventListener() {
+            iEventListener = new IEventListener<>() {
 
                 @Override
                 public void onClickEvent(Events event) {
@@ -153,7 +153,7 @@ public class AdminShowSelectedDateController implements Initializable {
     
     //Temporary func that represents data
     private void fillEventArray(){
-        final Date currentDate = new Date();
+        final LocalDate currentDate =  LocalDate.now();
         for(int i = 0; i < 10; i++){
             eventArray.add(new Events("Hello, World!! "+i, currentDate, currentDate));
         }
