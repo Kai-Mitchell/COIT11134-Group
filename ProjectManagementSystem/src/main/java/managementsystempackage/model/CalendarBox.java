@@ -6,14 +6,14 @@ package managementsystempackage.model;
 
 import java.time.LocalDate;
 
-/**
- *
- * @author renza
- */
+
 public class CalendarBox {
     private int boxNumber;
     private LocalDate date;
+    private boolean isSunday;
 
+    public CalendarBox() {
+    }
     public CalendarBox(int boxNumber, LocalDate date) {
         this.boxNumber = boxNumber;
         this.date = date;
@@ -46,6 +46,13 @@ public class CalendarBox {
         this.isCurrentDay = isCurrentDay;
     }
     
+    public boolean isSunday() {
+        return isSunday;
+    }
+
+    public void setIsSunday(boolean isSunday) {
+        this.isSunday = isSunday;
+    }
     
     
 }
