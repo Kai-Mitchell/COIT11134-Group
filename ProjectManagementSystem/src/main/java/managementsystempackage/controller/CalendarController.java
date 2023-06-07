@@ -26,15 +26,14 @@ import javafx.scene.layout.RowConstraints;
 import managementsystempackage.App;
 import managementsystempackage.model.Calendar;
 import managementsystempackage.model.CalendarBox;
-/**
- * FXML Controller class
- *
- * @author renza
- */
+import managementsystempackage.model.Events;
+import managementsystempackage.model.IEventListener;
+
 public class CalendarController implements Initializable {
     @FXML
     private GridPane calendarGrid;
-    
+    private IEventListener<CalendarBox> iEventListener;
+
     private Calendar calendar;
     private CalendarBox[] boxArray;
     /**
@@ -45,6 +44,24 @@ public class CalendarController implements Initializable {
         // TODO
         calendar = new Calendar();
         boxArray = calendar.getCurrentMonthInfo();
+        iEventListener = new IEventListener<>() {
+
+                @Override
+                public void onClickEvent(CalendarBox box) {
+                   
+                    System.out.println("click ");
+                    
+                    
+                }
+
+                @Override
+                public void onClickDelete(CalendarBox box) {
+                    //ToDo - Implement delete functionally
+                    System.out.println("Deleting...");
+                }
+                
+                
+            };
        
          int columns = 0;
         int rows = 1;
@@ -52,17 +69,22 @@ public class CalendarController implements Initializable {
                 //Load cards into the grid
                 for(CalendarBox box : boxArray){
             
-                FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("view/calendarBox.fxml"));
-                Pane pane = fxmlLoader.load();
-                
-                if(columns == 7){
-                    columns =0;
-                    rows++;
-                }
-                 RowConstraints rowConstraints = calendarGrid.getRowConstraints().get(0);
-                rowConstraints.setVgrow(Priority.NEVER);
-                rowConstraints.setValignment(VPos.TOP);
-                calendarGrid.add(pane, columns++, rows);
+                    FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("view/calendarBox.fxml"));
+                    Pane pane = fxmlLoader.load();
+                    CalendarBoxController controller = fxmlLoader.getController();
+                    controller.setBoxInfo(box, iEventListener);
+
+                    if(columns == 6){
+                        controller.changeColor();
+                    }
+
+                    if(columns == 7){
+                        columns =0;
+                        rows++;
+
+                    }
+
+                    calendarGrid.add(pane, columns++, rows);
                 }
             } catch (IOException ex) {
                 ex.printStackTrace();
