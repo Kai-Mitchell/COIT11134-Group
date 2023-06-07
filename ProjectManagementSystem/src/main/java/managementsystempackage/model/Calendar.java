@@ -2,6 +2,8 @@ package managementsystempackage.model;
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -31,7 +33,9 @@ public class Calendar {
         this.currentCalendarDate = todaysDate;
         LocalDate currentMonthFirstDay = currentCalendarDate.with(TemporalAdjusters.firstDayOfMonth());
         
-        return generateCalendarBoxData(currentMonthFirstDay);
+        generateCalendarBoxData(currentMonthFirstDay);
+        return boxArray;
+
     }
     
     public CalendarBox[] getPreviousMonthInfo(){
@@ -41,8 +45,9 @@ public class Calendar {
                 .minusMonths(1);
         this.currentCalendarDate = previousMonthFirstDay;
         
-        return generateCalendarBoxData(previousMonthFirstDay);
-        
+        generateCalendarBoxData(previousMonthFirstDay);
+        return boxArray;
+
     }
     
     public CalendarBox[] getNextMonthInfo(){
@@ -51,15 +56,14 @@ public class Calendar {
                 .plusMonths(1);
         this.currentCalendarDate = nextMonthFirstDay;
         
-        return generateCalendarBoxData(nextMonthFirstDay);
-       
+        generateCalendarBoxData(nextMonthFirstDay);
+        return this.boxArray;
     }
     
     private CalendarBox[] generateCalendarBoxData(LocalDate date){
-        
-        ExecutorService executorService = Executors.newCachedThreadPool();
+        //executing logic inside a separate thread
+        CompletableFuture<CalendarBox[]> future = CompletableFuture.supplyAsync(() -> {
 
-        executorService.execute(() -> {
             
             lock.lock();//lock to prevent anyother thread from editing boxArray
             try {
@@ -78,7 +82,7 @@ public class Calendar {
                     //fill boxes with date from last month
                     while(dayCounter >= 1){
                         int day = previousMonthLastDay - (dayCounter-1);
-                        boxArray[weekday - dayCounter] = new CalendarBox(day, currentDate.withDayOfMonth(day));
+                        this.boxArray[weekday - dayCounter] = new CalendarBox(day, currentDate.withDayOfMonth(day));
                         dayCounter--;
                     }
                     currentDate = date;
@@ -92,7 +96,7 @@ public class Calendar {
                             currentDate = date.with(TemporalAdjusters.firstDayOfMonth())
                                     .plusMonths(1);
                         }
-                        boxArray[i] = new CalendarBox(dayCounter, currentDate.withDayOfMonth(dayCounter));
+                        this.boxArray[i] = new CalendarBox(dayCounter, currentDate.withDayOfMonth(dayCounter));
                         dayCounter++;
                         
                     }
@@ -111,19 +115,23 @@ public class Calendar {
                             currentDate = date.with(TemporalAdjusters.firstDayOfMonth())
                                     .plusMonths(1);
                         }
-                        boxArray[i] = new CalendarBox(dayCounter, currentDate.withDayOfMonth(dayCounter));
+                        this.boxArray[i] = new CalendarBox(dayCounter, currentDate.withDayOfMonth(dayCounter));
                         dayCounter++;
                         
                     }
                 }
-                
+                return boxArray;
             } finally {
-                lock.unlock();//unable editing
+                lock.unlock();//enable editing
             }
         });
-        executorService.shutdown();
         
-        return boxArray;
+        try {
+            return future.get();// Wait for the thread to complete and return the result
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
     
     
