@@ -109,3 +109,19 @@
     -fx-background-insets: 0;
 }
 
+.calendar-box{
+    -fx-background-color: -text-100;
+    -fx-border-color: #432E5E;
+}
+.calendar-box:hover{
+    -fx-background-color: #f6edfa;
+    
+}
+
+.calendar-header{
+    -fx-text-fill: -text-100;
+    -fx-font-weight: bold;
+    -fx-font-family: "Arial";
+    -fx-font-size: 12px;
+
+}
