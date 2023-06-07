@@ -15,7 +15,6 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class Calendar {
     
-//    private ArrayList<Events> eventsList; // < - CalendarBoxes Will have eventlist
     private LocalDate todaysDate;
     private LocalDate currentCalendarDate;
     private CalendarBox[] boxArray;
