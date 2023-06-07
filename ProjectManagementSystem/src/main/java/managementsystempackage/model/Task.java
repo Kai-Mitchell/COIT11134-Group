@@ -1,5 +1,8 @@
 package managementsystempackage.model;
-
+/**
+ *
+ * @author gomez
+ */
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
