@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -33,48 +32,39 @@ public class CalendarBoxController implements Initializable {
     @FXML
     private VBox vbDisplay;
     private CalendarBox box = new CalendarBox();
-     private ArrayList<Events> boxEventArray = new ArrayList<>();
+    private ArrayList<Events> boxEventArray = new ArrayList<>();
     private IEventListener listenerInterface;
-    ExecutorService executorService;
+    private ExecutorService executorService;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         fillEventArray();
         
-        if(!boxEventArray.isEmpty()){
-            executorService = Executors.newCachedThreadPool();//
-            for(Events event : boxEventArray){
-
+        if (!boxEventArray.isEmpty()) {
+            executorService = Executors.newCachedThreadPool();
+            for (Events event : boxEventArray) {
                 executorService.execute(() -> {
-                    try{
-                        if(event.getStart().equals(this.box.getDate())){
-                            FXMLLoader loader = new FXMLLoader(App.class.getResource("view/eventTitle.fxml")); //selecting fxml file
-                            Pane pane = loader.load(); //loading file
-//                            EventCardController controller = loader.getController();//get fxml controller
+                    try {
+                        if (event.getStart().equals(this.box.getDate())) {
+                            FXMLLoader loader = new FXMLLoader(App.class.getResource("view/eventTitle.fxml"));
+                            Pane pane = loader.load();
 
                             Platform.runLater(() -> {
-
-                               vbDisplay.getChildren().add(pane);
+                                vbDisplay.getChildren().add(pane);
                             });
                         }
-                        
-                    }
-                    catch(IOException ioe){
-                        ioe.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        // Add appropriate exception handling here
                     }
                 });
             }
-            executorService.shutdown();
-
         }
-       
-        
     }
     
     @FXML
-    private void click(MouseEvent mouseEvent){
+   private void click() {
         listenerInterface.onClickEvent(box);
-        
     }
     public void setBoxInfo(CalendarBox box, IEventListener listenerInterface){
         this.box = box;
