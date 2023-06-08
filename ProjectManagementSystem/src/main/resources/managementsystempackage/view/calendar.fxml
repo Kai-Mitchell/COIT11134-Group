@@ -80,6 +80,9 @@
                <rowConstraints>
                   <RowConstraints minHeight="10.0" prefHeight="30.0" />
                </rowConstraints>
+               <columnConstraints>
+                  <ColumnConstraints />
+               </columnConstraints>
             </GridPane>
          </children>
          <BorderPane.margin>
@@ -109,6 +112,25 @@
                <VBox.margin>
                   <Insets bottom="6.34" top="15.86" />
                </VBox.margin>
+               <children>
+                  <Pane prefHeight="54.0" prefWidth="110.32" />
+                  <AnchorPane prefHeight="54.0" prefWidth="783.0">
+                     <children>
+                        <Button fx:id="btnPrevious" layoutX="8.0" layoutY="13.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="97.0" style="-fx-background-radius: 0 0 0 12;" styleClass="action-btn" text="&lt; Previous" textFill="#c7b8cc">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnNext" layoutX="130.0" layoutY="13.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="80.0" style="-fx-background-radius: 0 0 12 0;" styleClass="action-btn" text="Next &gt;" textFill="#c7b8cc" />
+                        <Text fx:id="txtMonthAndYear" layoutX="332.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="header2" text="April 2023">
+                           <font>
+                              <Font size="11.0" />
+                           </font>
+                        </Text>
+                        <Button fx:id="btnToday" layoutX="560.0" layoutY="12.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="80.0" style="-fx-background-radius: 12 0 12 0;" styleClass="action-btn" text="Today" textFill="#c7b8cc" />
+                     </children>
+                  </AnchorPane>
+               </children>
             </HBox>
          </children>
       </VBox>
