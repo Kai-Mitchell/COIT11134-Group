@@ -58,12 +58,13 @@ public class AdminShowSelectedDateController implements Initializable {
         sidePane1IsShowing = true;
         sidePane1.setVisible(!sidePane1IsShowing);
         showSidePane1();
-        fillEventArray();
-        addItems();
     } 
     
      
-   
+   @FXML
+   private void gotoCalendar() throws IOException{
+       SceneNavigation.gotoCalendar();
+   }
     
     private void addItems(){
         ExecutorService executorService = Executors.newCachedThreadPool();//
@@ -122,6 +123,10 @@ public class AdminShowSelectedDateController implements Initializable {
             }
             executorService.shutdown();
         }
+        else{
+            System.out.println("No data!!");
+        
+        }
 
     }
     
@@ -152,11 +157,10 @@ public class AdminShowSelectedDateController implements Initializable {
     }
     
     //Temporary func that represents data
-    private void fillEventArray(){
-        final LocalDate currentDate =  LocalDate.now();
-        for(int i = 0; i < 10; i++){
-            eventArray.add(new Events("Hello, World!! "+i, currentDate, currentDate));
-        }
+    public void setData(ArrayList<Events> eventArray){
+            this.eventArray = eventArray;
+            addItems();
+
     }
     
     
