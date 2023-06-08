@@ -11,6 +11,7 @@ public class CalendarBox {
     private int boxNumber;
     private LocalDate date;
     private boolean isSunday;
+    private boolean isCurrentDay;
 
     public CalendarBox() {
     }
@@ -18,7 +19,13 @@ public class CalendarBox {
         this.boxNumber = boxNumber;
         this.date = date;
     }
-    
+      public int getBoxNumber() {
+        return boxNumber;
+    }
+
+    public void setBoxNumber(int boxNumber) {
+        this.boxNumber = boxNumber;
+    }
     public LocalDate getDate() {
         return date;
     }
@@ -26,18 +33,14 @@ public class CalendarBox {
     public void setDate(LocalDate date) {
         this.date = date;
     }
-    private boolean isCurrentDay;
-
-
-    
-    public int getBoxNumber() {
-        return boxNumber;
+   public boolean isSunday() {
+        return isSunday;
     }
 
-    public void setBoxNumber(int boxNumber) {
-        this.boxNumber = boxNumber;
+    public void setIsSunday(boolean isSunday) {
+        this.isSunday = isSunday;
     }
-
+  
     public boolean isIsCurrentDay() {
         return isCurrentDay;
     }
@@ -46,13 +49,7 @@ public class CalendarBox {
         this.isCurrentDay = isCurrentDay;
     }
     
-    public boolean isSunday() {
-        return isSunday;
-    }
-
-    public void setIsSunday(boolean isSunday) {
-        this.isSunday = isSunday;
-    }
+    
     
     
 }
