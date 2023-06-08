@@ -5,18 +5,20 @@
 package managementsystempackage.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 
 public class CalendarBox {
     private int boxNumber;
     private LocalDate date;
     private boolean isSunday;
-
+    public ArrayList<Events> eventArray;
     public CalendarBox() {
     }
     public CalendarBox(int boxNumber, LocalDate date) {
         this.boxNumber = boxNumber;
         this.date = date;
+        eventArray = new ArrayList<>();
     }
     
     public LocalDate getDate() {
