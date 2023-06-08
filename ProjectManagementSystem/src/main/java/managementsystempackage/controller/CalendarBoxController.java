@@ -32,26 +32,60 @@ public class CalendarBoxController implements Initializable {
 
     @FXML
     private VBox vbDisplay;
-    private CalendarBox box = new CalendarBox();
-     private ArrayList<Events> boxEventArray = new ArrayList<>();
+    private CalendarBox box;
+    private ArrayList<Events> boxEventArray = new ArrayList<>();
     private IEventListener listenerInterface;
-    ExecutorService executorService;
+    private ExecutorService executorService;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        fillEventArray();
+     
+       
         
+    }
+     //Temporary func that represents data
+    private void fillEventArray(){
+        final LocalDate currentDate = LocalDate.now();
+        for(int i = 0; i < 9; i++){
+            boxEventArray.add(new Events( "Hello, World!! "+i, currentDate, currentDate));
+        }
+    }
+    
+    @FXML
+    private void click(MouseEvent mouseEvent){
+        listenerInterface.onClickEvent(box);
+        
+    }
+    public void setBoxInfo(CalendarBox box, IEventListener listenerInterface){
+        this.box = box;
+        this.listenerInterface = listenerInterface;
+        this.txtNumber.setText(String.valueOf(box.getBoxNumber()));
+        
+        fillEventArray();
+        loadTitle();
+
+    }
+    
+    public void changeColor(){
+        txtNumber.getStyleClass().add("sunday-color");
+
+    }
+
+    
+    private void loadTitle(){
         if(!boxEventArray.isEmpty()){
             executorService = Executors.newCachedThreadPool();//
             for(Events event : boxEventArray){
 
                 executorService.execute(() -> {
                     try{
-                        if(event.getStart().equals(this.box.getDate())){
+                        if(event.getStart().equals(box.getDate()) || event.getEnd().equals(box.getDate())){
+                            box.eventArray.add(event);
+
                             FXMLLoader loader = new FXMLLoader(App.class.getResource("view/eventTitle.fxml")); //selecting fxml file
                             Pane pane = loader.load(); //loading file
-//                            EventCardController controller = loader.getController();//get fxml controller
-
+                            EventTitleController controller = loader.getController();//get fxml controller
+                            controller.setTitle(event.getEventName());
                             Platform.runLater(() -> {
 
                                vbDisplay.getChildren().add(pane);
@@ -66,32 +100,6 @@ public class CalendarBoxController implements Initializable {
             }
             executorService.shutdown();
 
-        }
-       
-        
-    }
-    
-    @FXML
-    private void click(MouseEvent mouseEvent){
-        listenerInterface.onClickEvent(box);
-        
-    }
-    public void setBoxInfo(CalendarBox box, IEventListener listenerInterface){
-        this.box = box;
-        this.listenerInterface = listenerInterface;
-        this.txtNumber.setText(String.valueOf(box.getBoxNumber()));
-    }
-    
-    public void changeColor(){
-        txtNumber.getStyleClass().add("sunday-color");
-
-    }
-
-     //Temporary func that represents data
-    private void fillEventArray(){
-        final LocalDate currentDate = LocalDate.now();
-        for(int i = 0; i < 9; i++){
-            boxEventArray.add(new Events( "Hello, World!! "+i, currentDate, currentDate));
         }
     }
 }
