@@ -59,6 +59,7 @@ public class CalendarBoxController implements Initializable {
                     }
                 });
             }
+            executorService.shutdown();
         }
     }
     
