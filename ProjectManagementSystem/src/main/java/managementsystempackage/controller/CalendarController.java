@@ -15,6 +15,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
+import javafx.scene.control.Button;
 
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -23,6 +24,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.RowConstraints;
+import javafx.scene.text.Text;
 import managementsystempackage.App;
 import managementsystempackage.model.Calendar;
 import managementsystempackage.model.CalendarBox;
@@ -30,8 +32,21 @@ import managementsystempackage.model.Events;
 import managementsystempackage.model.IEventListener;
 
 public class CalendarController implements Initializable {
+    
+    @FXML
+    private Button btnNext;
+
+    @FXML
+    private Button btnPrevious;
+
+    @FXML
+    private Button btnToday;
+
     @FXML
     private GridPane calendarGrid;
+
+    @FXML
+    private Text txtMonthAndYear;
     private IEventListener<CalendarBox> iEventListener;
 
     private Calendar calendar;
@@ -49,7 +64,19 @@ public class CalendarController implements Initializable {
                 @Override
                 public void onClickEvent(CalendarBox box) {
                    
-                    System.out.println("click ");
+                    try {
+//                        SceneNavigation<AdminShowSelectedDateController> sceneNav = new SceneNavigation<>("adminShowSelectedDate");
+//                        sceneNav.getController().setData(box.eventArray);
+//                        sceneNav.gotoScene();
+                        FXMLLoader loader = new FXMLLoader(App.class.getResource("view/adminShowSelectedDate.fxml"));
+                        Pane pane = loader.load();
+                        AdminShowSelectedDateController controller = loader.getController();
+                        controller.setData(box.eventArray);
+                        App.gotoScene(pane);
+//                        App.setRoot("view/adminShowSelectedDate");
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
                     
                     
                 }
