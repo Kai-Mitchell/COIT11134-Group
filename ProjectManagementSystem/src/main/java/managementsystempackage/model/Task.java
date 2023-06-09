@@ -15,6 +15,8 @@ public class Task implements Serializable{
     private boolean completed;
     ArrayList<User> taskUserList = new ArrayList<>();
     private static int nextTaskID;
+    
+    public Task(){}
 
     public Task(String taskName, int taskEventID,LocalDate dueDate, ArrayList<User> taskUserList)
     {
