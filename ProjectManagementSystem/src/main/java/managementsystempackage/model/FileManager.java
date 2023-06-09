@@ -23,12 +23,12 @@ import javafx.scene.control.ButtonType;
 public class FileManager {
     //Instantiates an ArrayList
     //The ArrayList is populated in the create""record() method
-    static ArrayList<User> userList = new ArrayList<>();
-    static ArrayList<Events> eventList = new ArrayList<>();
-    static ArrayList<Task> taskList = new ArrayList<>();
-    static int userCount = 0;
-    static int eventCount = 0;
-    static int taskCount = 0;
+    public static ArrayList<User> userList = new ArrayList<>();
+    public static ArrayList<Events> eventList = new ArrayList<>();
+    public static ArrayList<Task> taskList = new ArrayList<>();
+    public static int userCount = 0;
+    public static int eventCount = 0;
+    public static int taskCount = 0;
     /**
      * Initializes the controller class.
      */
