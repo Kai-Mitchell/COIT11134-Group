@@ -23,8 +23,9 @@ public class SceneNavigation <T>{
         setController();
     }
     
-    private void setController() {
+    private void setController() throws IOException {
         FXMLLoader loader = new FXMLLoader(App.class.getResource("view/"+this.fileName+".fxml"));
+        this.pane = loader.load();
         this.controller = loader.getController();
         
     }
@@ -34,10 +35,22 @@ public class SceneNavigation <T>{
     }
     
     public void gotoScene() throws IOException{
-        App.setRoot("view/"+this.fileName);
+        App.gotoScene(pane);
     }
     public static void gotoCalendar() throws IOException{
         App.setRoot("view/calendar");
+    }
+    
+    public static void gotoPlannedEvent() throws IOException{
+        App.setRoot("view/_adminPlannedEvents");
+    }
+    
+    public static void gotoCompletedEvents() throws IOException{
+        App.setRoot("view/adminCompletedEvents");
+    }
+    
+    public static void gotoLoginPage() throws IOException{
+        App.setRoot("view/loginPage");
     }
     
 }
