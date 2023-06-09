@@ -26,15 +26,6 @@ public class App extends Application {
         stage.setResizable(false);
         stage.show();
         loadingFiles();
-        FileManager.addNewProjectManager("Admin", "Admin");
-        FileManager.addNewUser("Kai", "Kai");
-        FileManager.addNewUser("Francis", "Francis");
-        FileManager.addNewUser("Carlos","Carlos");
-        try {
-            FileManager.saveAllFiles();
-        } catch (ClassNotFoundException ex) {
-            ex.printStackTrace();
-        }
     }
     
     public static void gotoScene(Pane pane){
