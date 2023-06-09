@@ -15,7 +15,7 @@ public class ProjectManager extends User {
 
     public ProjectManager(String username, String password) {
         super(username, password);
-        super.setIsAdmin(false);
+        super.setIsAdmin(true);
     }
 
 

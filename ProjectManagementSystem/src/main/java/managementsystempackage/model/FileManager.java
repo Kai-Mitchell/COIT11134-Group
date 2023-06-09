@@ -29,6 +29,7 @@ public class FileManager {
     public static int userCount = 0;
     public static int eventCount = 0;
     public static int taskCount = 0;
+    public static int currentUser = -1;
     /**
      * Initializes the controller class.
      */
