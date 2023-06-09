@@ -58,6 +58,7 @@ public class CalendarController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         calendar = new Calendar();
+        calendarGrid.getChildren().clear();
         boxArray = calendar.getCurrentMonthInfo();
         iEventListener = new IEventListener<>() {
 
@@ -65,15 +66,10 @@ public class CalendarController implements Initializable {
                 public void onClickEvent(CalendarBox box) {
                    
                     try {
-//                        SceneNavigation<AdminShowSelectedDateController> sceneNav = new SceneNavigation<>("adminShowSelectedDate");
-//                        sceneNav.getController().setData(box.eventArray);
-//                        sceneNav.gotoScene();
-                        FXMLLoader loader = new FXMLLoader(App.class.getResource("view/adminShowSelectedDate.fxml"));
-                        Pane pane = loader.load();
-                        AdminShowSelectedDateController controller = loader.getController();
-                        controller.setData(box.eventArray);
-                        App.gotoScene(pane);
-//                        App.setRoot("view/adminShowSelectedDate");
+                        
+                        SceneNavigation<AdminShowSelectedDateController> sceneNav = new SceneNavigation<>("adminShowSelectedDate");//load file
+                        sceneNav.getController().setData(box);//Send data
+                        sceneNav.gotoScene();//goto file
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
@@ -89,8 +85,67 @@ public class CalendarController implements Initializable {
                 
                 
             };
-       
-         int columns = 0;
+        
+        loadBoxes();
+//        calendarGrid.getChildren().clear();
+
+         
+        
+        
+    }    
+    
+//    @FXML
+//    private void gotoSelectedDate(MouseEvent event) throws IOException {
+//        App.setRoot("view/adminShowSelectedDate");
+//    }
+    
+    @FXML
+    private void gotoCalendar() throws IOException{
+        SceneNavigation.gotoCalendar();
+    }
+   @FXML
+   private void gotoPlannedEvent() throws IOException{
+       SceneNavigation.gotoPlannedEvent();
+   }
+   @FXML
+   private void gotoCompletedEvents() throws IOException{
+       SceneNavigation.gotoCompletedEvents();
+   }
+   
+   @FXML
+   private void gotoLoginPage() throws IOException{
+       SceneNavigation.gotoLoginPage();
+   }
+    
+   @FXML
+   private void next() throws IOException{
+        calendarGrid.getChildren().clear();
+        boxArray = calendar.getNextMonthInfo();   
+        loadBoxes();
+   }
+   
+   @FXML
+   private void previous() throws IOException{
+        calendarGrid.getChildren().clear();
+        boxArray = calendar.getPreviousMonthInfo();   
+        loadBoxes();
+   }
+   
+   
+   @FXML
+   private void current() throws IOException{
+        calendarGrid.getChildren().clear();
+        boxArray = calendar.getCurrentMonthInfo();   
+        loadBoxes();
+   }
+   
+
+    public void setArray(CalendarBox[] boxArray){
+        this.boxArray = boxArray;
+    }
+    
+    private void loadBoxes(){
+        int columns = 0;
         int rows = 1;
             try {
                 //Load cards into the grid
@@ -116,17 +171,5 @@ public class CalendarController implements Initializable {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-        
-        
-    }    
-    
-//    @FXML
-//    private void gotoSelectedDate(MouseEvent event) throws IOException {
-//        App.setRoot("view/adminShowSelectedDate");
-//    }
-
-    public void setArray(CalendarBox[] boxArray){
-        this.boxArray = boxArray;
     }
-    
 }
