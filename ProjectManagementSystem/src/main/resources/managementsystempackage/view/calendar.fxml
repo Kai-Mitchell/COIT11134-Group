@@ -122,7 +122,7 @@
                            </font>
                         </Button>
                         <Button fx:id="btnNext" layoutX="130.0" layoutY="13.0" mnemonicParsing="false" onAction="#next" prefHeight="29.0" prefWidth="80.0" style="-fx-background-radius: 0 0 12 0;" styleClass="action-btn" text="Next &gt;" textFill="#c7b8cc" />
-                        <Text fx:id="txtMonthAndYear" layoutX="332.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="header2" text="April 2023">
+                        <Text fx:id="txtMonthAndYear" layoutX="252.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="header2" text="April 2023" textAlignment="CENTER" wrappingWidth="251.7265625" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="252.0" AnchorPane.rightAnchor="292.0">
                            <font>
                               <Font size="11.0" />
                            </font>
