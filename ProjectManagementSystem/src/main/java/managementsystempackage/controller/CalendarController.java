@@ -60,9 +60,6 @@ public class CalendarController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         
-        final LocalDate currentDate = LocalDate.now();
-
-        FileManager.addNewEvent("Hello, World!! ", currentDate, currentDate);
         
         calendar = new Calendar();
         calendarGrid.getChildren().clear();
