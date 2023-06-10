@@ -23,6 +23,10 @@ public class EventTitleController implements Initializable{
     }
     
     public void setTitle(String title){
-        this.txtTitle.setText(title.substring(0,10 ) + "...");
+        if(title.length() <= 10){
+            this.txtTitle.setText(title + "..");
+        }else{
+            this.txtTitle.setText(title.substring(0, 10)+"..");
+        }
     }
 }
