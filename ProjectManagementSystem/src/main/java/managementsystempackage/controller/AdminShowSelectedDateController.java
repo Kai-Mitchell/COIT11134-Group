@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -20,7 +21,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -177,7 +180,13 @@ public class AdminShowSelectedDateController implements Initializable {
                @Override
                public void onClickDelete(User user) {
                    try {
-                       currentTask.getUserList().remove(user);
+//                      
+                       
+                       for(User u : currentTask.getUserList()){
+                           if(u.getUserID() == user.getUserID()){
+                                currentTask.getUserList().remove(u);
+                           }
+                       }
                        FileManager.saveAllFiles();
                    } catch (IOException ex) {
                        ex.printStackTrace();
@@ -192,7 +201,7 @@ public class AdminShowSelectedDateController implements Initializable {
             iEventListener = new IEventListener<>() {
 
                 @Override
-                public void onClickEvent(Events event) {
+                public void onClickEvent(Events event) throws IndexOutOfBoundsException {
                     
                     if(currentEvent != null && currentEvent.equals(event) || !sidePane1IsShowing ){
                         sidePane1.setVisible(true);
@@ -205,7 +214,7 @@ public class AdminShowSelectedDateController implements Initializable {
                         
                     }
                     
-                    if(sidePane1IsShowing){
+                    if(sidePane1IsShowing && currentEvent != null){
                         
                                 
                         for(Task task : FileManager.taskList ){
@@ -235,9 +244,24 @@ public class AdminShowSelectedDateController implements Initializable {
 
                 @Override
                 public void onClickDelete(Events event) {
-                    FileManager.eventList.remove(event);
-                    vbDisplay.getChildren().clear();
-                    clearEventDisplay();
+                    try {
+                        FileManager.eventList.remove(event);
+                        vbDisplay.getChildren().clear();
+                        clearEventDisplay();
+                        for(Task task : FileManager.taskList){
+                            if(event.getEventID() == task.getTaskEventID()){
+                               FileManager.taskList.remove(task);
+                            }
+                        }
+                        
+                        FileManager.saveAllFiles();
+                        
+                        
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    } catch (ClassNotFoundException ex) {
+                        ex.printStackTrace();
+                    }
                     
                     
                 }
@@ -253,7 +277,6 @@ public class AdminShowSelectedDateController implements Initializable {
             iTaskListener = new IEventListener<Task>() {
             @Override
             public void onClickEvent(Task task) {
-                currentTask = task;
 
                 if(currentTask != null && currentTask.equals(task) || !sidePane2IsShowing){
 
@@ -262,18 +285,24 @@ public class AdminShowSelectedDateController implements Initializable {
                    
 
                 }
-                
-                 if(currentEvent != null){
-                    tfDescription.setText(currentTask.getTaskName());
-                    dpEndDate.setValue(currentTask.getDueDate());
+                currentTask = task;
 
-                    vbDisplayUsers1.getChildren().clear();
-                    for(User user : FileManager.userList){
-                        String btnName = "Add User";
-                        if(currentTask.getUserList().contains(user)){
-                            btnName = "Remove user";
+                
+                if(currentTask != null){
+                   tfDescription.setText(currentTask.getTaskName());
+                   dpEndDate.setValue(currentTask.getDueDate());
+
+                   vbDisplayUsers.getChildren().clear();
+                   for(User user : FileManager.userList){
+                       String btnName = "Add User";
+                       for(User userTask : currentTask.getUserList()){
+                           if(userTask.getUserID() == user.getUserID()){
+                                btnName = "Remove user";
+
+                            }
+
+
                         }
-                            
                         try{
                             FXMLLoader loader = new FXMLLoader(App.class.getResource("view/userCard.fxml")); //selecting fxml file
                             Pane pane = loader.load(); //loading file
@@ -281,14 +310,16 @@ public class AdminShowSelectedDateController implements Initializable {
                             controller.setDate(user, iUserListener, btnName); //send data to controller
 
 
-                            vbDisplayUsers1.getChildren().add(pane);
+                            vbDisplayUsers.getChildren().add(pane);
 
-                        }
-                        catch(IOException ioe){
-                            ioe.printStackTrace();
-                        }
-                    }
+                       }
+                       catch(IOException ioe){
+                           ioe.printStackTrace();
+                       }
+
+                   }
                 }
+
             }
 
                 @Override
@@ -297,6 +328,7 @@ public class AdminShowSelectedDateController implements Initializable {
 
                 }
             };
+            
         
     } 
     
@@ -320,8 +352,16 @@ public class AdminShowSelectedDateController implements Initializable {
    }
    
    @FXML
-   private void addUser(){
-   
+   private void deleteTask() throws ClassNotFoundException, IOException{
+           FileManager.taskList.remove(currentTask);
+            clearTaskDisplay();
+            sidePane1.setVisible(false);
+            showPanel1();
+            clearEventDisplay();
+            
+//       showSidePaneCreate();
+//       FileManager.saveAllFiles();
+      
    
    }
    @FXML
@@ -371,29 +411,39 @@ public class AdminShowSelectedDateController implements Initializable {
 
         sidePane3.setVisible(true);
         showSidePane3();
-        
+
         
          
    }
    
    
     @FXML
-    void createNewTask(ActionEvent event) throws IOException, ClassNotFoundException {        
-        if(!FileManager.isEmpty(tfDescription1.getText()) && !FileManager.isEmpty(dpTaskDueDate1.getValue().toString())){
-            FileManager.addNewtask(tfDescription1.getText(), currentEvent.getEventID(), dpTaskDueDate1.getValue());
-            FileManager.saveAllFiles();
-            sidePaneCreate.setVisible(false);
-            sidePane1.setVisible(true);
-            showSidePaneCreate();
-            currentTask = FileManager.taskList.get(FileManager.taskCount-1);
+    void createNewTask(ActionEvent event) throws IOException, ClassNotFoundException {    
+        try{
+            if(!FileManager.isEmpty(tfDescription1.getText()) && !FileManager.isEmpty(dpTaskDueDate1.getValue().toString())){
+                FileManager.addNewtask(tfDescription1.getText(), currentEvent.getEventID(), dpTaskDueDate1.getValue());
+                FileManager.saveAllFiles();
+                sidePaneCreate.setVisible(false);
+                sidePane1.setVisible(true);
+                showSidePaneCreate();
+                currentTask = FileManager.taskList.get(FileManager.taskCount-1);
+
+    //            tfDescription1.setText(currentTask.getTaskName());
+    //            dpTaskDueDate1.setValue(currentTask.getDueDate());
+                clearTaskDisplay();
+                sidePane1.setVisible(false);
+                showPanel1();
+                clearEventDisplay();
+
             
-//            tfDescription1.setText(currentTask.getTaskName());
-//            dpTaskDueDate1.setValue(currentTask.getDueDate());
-            clearTaskDisplay();
-            clearEventDisplay();
             
-            
-            
+            }
+        }
+        catch(NullPointerException e){
+             Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Error - Empty Field");
+        alert.setContentText("Date picker must contain a value");
+        Optional<ButtonType> result = alert.showAndWait();
         }
     }
    
@@ -416,7 +466,6 @@ public class AdminShowSelectedDateController implements Initializable {
             dpStartDate.setValue(currentEvent.getStart());
             dpEndDate.setValue(currentEvent.getEnd());
             //add tasks in event
-            clearTaskDisplay();
             clearEventDisplay();
             
             
@@ -467,28 +516,29 @@ public class AdminShowSelectedDateController implements Initializable {
         }
    }
    
-   private void clearTaskDisplay(){
+   private void clearTaskDisplay() throws IndexOutOfBoundsException{
        taskDisplay.getChildren().clear();
-            
-        for(int i = 0; i < FileManager.taskCount; i++){
-            if(FileManager.taskList.get(i).getTaskEventID() == currentEvent.getEventID()){
-                try{
-                    FXMLLoader loader = new FXMLLoader(App.class.getResource("view/taskCard.fxml")); //selecting fxml file
-                    Pane pane = loader.load(); //loading file
-                    TaskCardController controller = loader.getController();//get fxml controller
-                    controller.setCardData(FileManager.taskList.get(i), iTaskListener); //send data to controller
-                    taskDisplay.getChildren().add(pane);
+        if(FileManager.taskList.size() < 0){
+        
+            for(int i = 0; i < FileManager.taskCount; i++){
+                if(FileManager.taskList.get(i).getTaskEventID() == currentEvent.getEventID()){
+                    try{
+                        FXMLLoader loader = new FXMLLoader(App.class.getResource("view/taskCard.fxml")); //selecting fxml file
+                        Pane pane = loader.load(); //loading file
+                        TaskCardController controller = loader.getController();//get fxml controller
+                        controller.setCardData(FileManager.taskList.get(i), iTaskListener); //send data to controller
+                        taskDisplay.getChildren().add(pane);
 
+                        }
+                    catch(IOException ioe){
+                        ioe.printStackTrace();
                     }
-                catch(IOException ioe){
-                    ioe.printStackTrace();
                 }
             }
         }
    }
     
     private void addItems(){
-        ExecutorService executorService = Executors.newCachedThreadPool();//
         
         
         if(!eventArray.isEmpty()){
@@ -528,21 +578,25 @@ public class AdminShowSelectedDateController implements Initializable {
         dpStartDate.setValue(currentEvent.getStart());
         dpEndDate.setValue(currentEvent.getEnd());
         taskDisplay.getChildren().clear();
+        try{
+            for(int i = 0; i < FileManager.taskCount; i++){
+                if(FileManager.taskList.get(i).getTaskEventID() == currentEvent.getEventID()){
+                    try{
+                        FXMLLoader loader = new FXMLLoader(App.class.getResource("view/taskCard.fxml")); //selecting fxml file
+                        Pane pane = loader.load(); //loading file
+                        TaskCardController controller = loader.getController();//get fxml controller
+                        controller.setCardData(FileManager.taskList.get(i), iTaskListener); //send data to controller
+                        taskDisplay.getChildren().add(pane);
 
-        for(int i = 0; i < FileManager.taskCount; i++){
-            if(FileManager.taskList.get(i).getTaskEventID() == currentEvent.getEventID()){
-                try{
-                    FXMLLoader loader = new FXMLLoader(App.class.getResource("view/taskCard.fxml")); //selecting fxml file
-                    Pane pane = loader.load(); //loading file
-                    TaskCardController controller = loader.getController();//get fxml controller
-                    controller.setCardData(FileManager.taskList.get(i), iTaskListener); //send data to controller
-                    taskDisplay.getChildren().add(pane);
-
-                }
-                catch(IOException ioe){
-                    ioe.printStackTrace();
+                    }
+                    catch(IOException ioe){
+                        ioe.printStackTrace();
+                    }
                 }
             }
+        }catch(IndexOutOfBoundsException e){
+            currentTask = null;
+            
         }
         
         
@@ -606,22 +660,7 @@ public class AdminShowSelectedDateController implements Initializable {
             this.box = box;
             this.txtDate.setText(box.getDate().format(formatter));
             addItems();
-            vbDisplayUsers.getChildren().clear();
-            for(User user: FileManager.userList){
-                    FXMLLoader loader = new FXMLLoader(App.class.getResource("view/userCard.fxml")); //selecting fxml file
-                    try {
-                        Pane pane = loader.load(); //loading file
-                        UserCardController controller = loader.getController();
-                        if(!user.getIsAdmin()){
-                            
-                            controller.setDate(user, iUserListener, "Add User");
-                            vbDisplayUsers.getChildren().add(pane);
-                        }
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    }
-                    
-            }
+            
 
     }
     
