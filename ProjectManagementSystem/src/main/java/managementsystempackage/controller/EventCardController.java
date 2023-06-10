@@ -68,7 +68,7 @@ public class EventCardController implements Initializable {
 
     
     @FXML
-    private void click(MouseEvent mouseEvent){
+    private void click(MouseEvent mouseEvent) throws IndexOutOfBoundsException{
         listenerInterface.onClickEvent(event);
     }
     @FXML
