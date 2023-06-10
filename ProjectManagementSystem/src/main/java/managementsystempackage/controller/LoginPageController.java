@@ -42,15 +42,17 @@ public class LoginPageController implements Initializable {
     
     @FXML
     private void gotoCalendar(ActionEvent event) throws IOException {
-        App.setRoot("view/calendar");
-/**
+        
         for (int i = 0; i < userCount; i++){
             if (userList.get(i).getUsername().equals(usernameField.getText()) && userList.get(i).getPassword().equals(passwordField.getText())){
                 FileManager.currentUser = userList.get(i).getUserID();
                 System.out.println(userList.get(i).getUsername());
                 if (userList.get(i).getIsAdmin() == true ){
-//                    App.setRoot("view/calendar");
-                }                    
+                    App.setRoot("view/calendar");
+                }
+                else {
+                    App.setRoot("view/userCalendar");
+                }
             }
         }
         if (FileManager.currentUser == -1){
@@ -59,7 +61,5 @@ public class LoginPageController implements Initializable {
             alert.setContentText("No users have that Login Information. Please try again with the correct login information");
             Optional<ButtonType> result = alert.showAndWait();
         }
-        *     **/
-
     }
 }
