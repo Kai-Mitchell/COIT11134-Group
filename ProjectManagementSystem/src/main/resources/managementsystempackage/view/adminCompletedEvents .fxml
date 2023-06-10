@@ -30,7 +30,7 @@
             </ScrollPane>
             <HBox alignment="CENTER_LEFT" layoutX="-2.0" layoutY="3.0" prefHeight="29.0" prefWidth="200.0" spacing="10.0">
                <children>
-                  <Text fill="#c7b8cc" strokeType="OUTSIDE" strokeWidth="0.0" text="All Available Events">
+                  <Text fill="#c7b8cc" strokeType="OUTSIDE" strokeWidth="0.0" text="All Recent Events">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -350,7 +350,7 @@
                <children>
                   <Button mnemonicParsing="false" onAction="#gotoCalendar" prefWidth="110.32" styleClass="nav-btn" text="Calendar" />
                   <Button mnemonicParsing="false" onAction="#gotoPlannedEvent" prefHeight="41.0" prefWidth="139.0" styleClass="nav-btn" text="Planned Events" />
-                  <Button mnemonicParsing="false" onAction="#gotoCompletedEvents" prefHeight="41.0" prefWidth="150.0" styleClass="nav-btn" text="Completed Events" />
+                  <Button mnemonicParsing="false" onAction="#gotoCompletedEvents" prefHeight="41.0" prefWidth="153.0" styleClass="nav-btn" text="Completed Events" />
                   <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
                   <Button mnemonicParsing="false" onAction="#gotoLoginPage" prefWidth="110.32" styleClass="nav-btn" text="Logout" />
                </children>
@@ -360,7 +360,7 @@
                   <Insets top="15.86" />
                </VBox.margin>
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="header2" text="Planned Events" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="header2" text="Completed Events" />
                </children>
             </HBox>
          </children>

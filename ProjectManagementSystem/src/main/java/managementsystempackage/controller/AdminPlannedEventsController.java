@@ -168,7 +168,6 @@ public class AdminPlannedEventsController implements Initializable {
                                 
 
                                 taskDisplay.getChildren().add(pane);
-
                             }
                             catch(IOException ioe){
                                 ioe.printStackTrace();
