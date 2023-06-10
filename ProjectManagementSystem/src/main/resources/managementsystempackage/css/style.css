@@ -132,3 +132,37 @@
 .normal-color{
     -fx-fill: -dark-background-color;
 }
+
+
+
+.radio-button .radio {
+    -fx-border-width: 2px;
+    -fx-border-color: #ffffff;
+    -fx-background-color: -bg-color;
+    -fx-background-image: null;
+    -fx-border-radius: 15px;
+    -fx-padding: 3px;
+}
+.radio-button .radio:selected {
+    -fx-background-color: white;
+    -fx-background-image: null;
+}
+.radio-button -radio:armed {
+    -fx-background-color: white;
+    -fx-background-image: null;
+}
+.radio-button -radio:determinate {
+    -fx-background-color: white;
+    -fx-background-image: null;
+}
+.radio-button -radio:indeterminate {
+    -fx-background-color: white;
+    -fx-background-image: null;
+}
+.radio-button .dot {
+    -fx-background-radius: 15px;
+    -fx-padding: 8px;
+    
+     -fx-mark-highlight-color: #ffffff ;
+    -fx-mark-color: #ffffff ;
+}
