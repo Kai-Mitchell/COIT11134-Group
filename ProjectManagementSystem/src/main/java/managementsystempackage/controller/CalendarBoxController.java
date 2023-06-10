@@ -67,6 +67,22 @@ public class CalendarBoxController implements Initializable {
         txtNumber.getStyleClass().add("sunday-color");
 
     }
+    
+    public boolean DoesEventHaveCompletedTasks(Events event){
+        //For All tasks
+        for(int i = 0; i<FileManager.taskCount; i++){
+            //if task's eventID = event eventID
+            if(FileManager.taskList.get(i).getTaskEventID() == event.getEventID()){
+                if(!FileManager.taskList.get(i).isCompleted()){
+                    event.setIsComplete(false);
+                    return false;  
+                }
+            }
+        }
+        //otherwise return false
+        event.setIsComplete(true);
+        return true;
+    }
 
     
     private void loadTitle(){
@@ -76,7 +92,7 @@ public class CalendarBoxController implements Initializable {
 
                 executorService.execute(() -> {
                     try{
-                        if(event.getStart().equals(box.getDate()) || event.getEnd().equals(box.getDate())){
+                        if((event.getStart().equals(box.getDate()) && !DoesEventHaveCompletedTasks(event))|| (event.getEnd().equals(box.getDate())&& !DoesEventHaveCompletedTasks(event))){
                             box.eventArray.add(event);
 
                             FXMLLoader loader = new FXMLLoader(App.class.getResource("view/eventTitle.fxml")); //selecting fxml file

@@ -14,6 +14,7 @@ public class Events implements Serializable{
     private LocalDate start;
     private LocalDate end;
     private static int nextEventID = 1001;
+    private Boolean isComplete;
 
     public Events(String eventName,LocalDate start,LocalDate end)
     {
@@ -21,6 +22,7 @@ public class Events implements Serializable{
         this.eventName = eventName;
         this.start = start;
         this.end = end;
+        isComplete = false;
 
     }
 
@@ -49,6 +51,11 @@ public class Events implements Serializable{
         eventID = nextEventID;
         nextEventID++;
     }
+    
+    public void setIsComplete(Boolean isComplete){
+        this.isComplete = isComplete;
+    }
+            
     
     public static void setNextEventID(int nextEventID) {
         Events.nextEventID = nextEventID;
