@@ -4,6 +4,7 @@ package managementsystempackage.model;
  * @author gomez
  */
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.concurrent.CompletableFuture;
@@ -19,8 +20,11 @@ public class Calendar {
     private LocalDate currentCalendarDate;
     private CalendarBox[] boxArray;
     private ReentrantLock lock;
-    
+    private DateTimeFormatter formatter;
+
     public Calendar() {
+        formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
+        
         this.todaysDate = LocalDate.now();
         this.currentCalendarDate = LocalDate.now();
         this.boxArray = new CalendarBox[35];
@@ -42,7 +46,6 @@ public class Calendar {
     }
     
     public CalendarBox[] getPreviousMonthInfo(){
-        
         // Get previous month
         LocalDate previousMonthFirstDay = currentCalendarDate.with(TemporalAdjusters.firstDayOfMonth())
                 .minusMonths(1);
@@ -63,8 +66,16 @@ public class Calendar {
         return this.boxArray;
     }
     
+    public String getMonthAndYear(){
+        currentCalendarDate.format(formatter);
+        String month = currentCalendarDate.getMonth().toString();
+        int year = currentCalendarDate.getYear();
+        return month+" "+year;
+    }
+    
     private CalendarBox[] generateCalendarBoxData(LocalDate date){
         //executing logic inside a separate thread
+        date.format(formatter);
         CompletableFuture<CalendarBox[]> future = CompletableFuture.supplyAsync(() -> {
 
             
