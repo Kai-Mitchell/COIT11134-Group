@@ -365,21 +365,22 @@ public class userShowSelectedDateController implements Initializable {
 
         for(int i = 0; i < FileManager.taskCount; i++){
             if(FileManager.taskList.get(i).getTaskEventID() == currentEvent.getEventID()){
-                try{
-                    FXMLLoader loader = new FXMLLoader(App.class.getResource("view/taskCard.fxml")); //selecting fxml file
-                    Pane pane = loader.load(); //loading file
-                    TaskCardController controller = loader.getController();//get fxml controller
-                    controller.setCardData(FileManager.taskList.get(i), iTaskListener); //send data to controller
-                    taskDisplay.getChildren().add(pane);
-
-                }
-                catch(IOException ioe){
-                    ioe.printStackTrace();
+                for(User userC : FileManager.taskList.get(i).getUserList()){
+                    if (userC.getUserID()==FileManager.currentUser){
+                        try{
+                            FXMLLoader loader = new FXMLLoader(App.class.getResource("view/taskCard.fxml")); //selecting fxml file
+                            Pane pane = loader.load(); //loading file
+                            TaskCardController controller = loader.getController();//get fxml controller
+                            controller.setCardData(FileManager.taskList.get(i), iTaskListener); //send data to controller
+                            taskDisplay.getChildren().add(pane); 
+                        }
+                        catch(IOException ioe){
+                            ioe.printStackTrace();
+                        }
+                    }
                 }
             }
-        }
-        
-        
+        }        
     }
     
     private void showSidePane1() {
