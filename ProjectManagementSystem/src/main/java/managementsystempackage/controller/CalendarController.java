@@ -93,6 +93,7 @@ public class CalendarController implements Initializable {
             };
         
         loadBoxes();
+        
 //        calendarGrid.getChildren().clear();
 
          
