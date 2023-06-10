@@ -162,20 +162,20 @@ public class FileManager {
         userCount = userList.size();
     }
     //add event into eventList
-    public static  void addEventevent(String eventName,LocalDate start,LocalDate end){
+    public static  void addNewEvent(String eventName,LocalDate start,LocalDate end){
         Events event = new Events(eventName, start, end);
         eventList.add(event);
-        //Alert popup with event info
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Event Added");
-        alert.setContentText(eventList.get(eventCount).toString());
-        Optional<ButtonType> result = alert.showAndWait();
+//        //Alert popup with event info
+//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//        alert.setTitle("Event Added");
+//        alert.setContentText(eventList.get(eventCount).toString());
+//        Optional<ButtonType> result = alert.showAndWait();
         //Keeps track of the number of obejcts
         eventCount = eventList.size();
     }
     //add task into taskList
-    public static  void addNewtask(String taskName, int taskEventID,LocalDate dueDate, ArrayList<User> taskUserList){
-        Task task = new Task(taskName, taskEventID, dueDate, taskUserList);
+    public static  void addNewtask(String taskName, int taskEventID,LocalDate dueDate){
+        Task task = new Task(taskName, taskEventID, dueDate);
         taskList.add(task);
         //Alert popup with task info
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
