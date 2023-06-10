@@ -56,7 +56,7 @@
    <right>
       <Pane prefWidth="110.32" styleClass="dark-background" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane fx:id="sidePane1" layoutX="-653.0" layoutY="-4.0" prefHeight="601.0" prefWidth="764.0" styleClass="background" visible="false">
+            <AnchorPane fx:id="sidePane1" focusTraversable="true" layoutX="-653.0" layoutY="-4.0" prefHeight="601.0" prefWidth="764.0" styleClass="background" visible="false">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
@@ -280,14 +280,14 @@
                   </VBox>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="sidePaneCreate" layoutX="-441.0" prefHeight="601.0" prefWidth="552.0" styleClass="dark-background" visible="false">
+            <AnchorPane fx:id="sidePaneCreate" layoutX="-441.0" prefHeight="601.0" prefWidth="552.0" styleClass="dark-background">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
                <children>
                   <HBox alignment="CENTER_LEFT" layoutX="22.0" layoutY="22.0" prefHeight="35.0" prefWidth="353.0" AnchorPane.leftAnchor="27.0" AnchorPane.rightAnchor="0.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#showPanel2" prefHeight="28.0" prefWidth="28.0" styleClass="transparent-background" text="&lt;" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#showPaneCreateTask" prefHeight="28.0" prefWidth="28.0" styleClass="transparent-background" text="&lt;" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
