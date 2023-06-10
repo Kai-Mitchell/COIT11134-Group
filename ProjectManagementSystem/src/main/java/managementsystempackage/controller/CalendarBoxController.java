@@ -23,6 +23,7 @@ import javafx.scene.text.Text;
 import managementsystempackage.App;
 import managementsystempackage.model.CalendarBox;
 import managementsystempackage.model.Events;
+import managementsystempackage.model.FileManager;
 import managementsystempackage.model.IEventListener;
 
 
@@ -37,18 +38,17 @@ public class CalendarBoxController implements Initializable {
     private IEventListener listenerInterface;
     private ExecutorService executorService;
     
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-     
+        
+
        
         
     }
      //Temporary func that represents data
     private void fillEventArray(){
-        final LocalDate currentDate = LocalDate.now();
-        for(int i = 0; i < 9; i++){
-            boxEventArray.add(new Events( "Hello, World!! "+i, currentDate, currentDate));
-        }
+        boxEventArray = FileManager.eventList;
     }
     
     @FXML
