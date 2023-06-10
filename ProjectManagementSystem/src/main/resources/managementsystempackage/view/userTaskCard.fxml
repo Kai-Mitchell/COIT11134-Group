@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="56.0" prefWidth="546.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementsystempackage.controller.UserTaskCardController">
+   <children>
+      <HBox layoutX="-14.0" layoutY="-36.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane prefHeight="56.0" prefWidth="59.0">
+               <children>
+                  <RadioButton fx:id="rbComplete" layoutX="17.0" layoutY="16.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="17.0" />
+               </children>
+            </AnchorPane>
+            <HBox onMousePressed="#click" prefHeight="56.0" prefWidth="348.0" style="-fx-background-radius: 12;" styleClass="transparent-background" HBox.hgrow="ALWAYS">
+               <children>
+                  <VBox prefHeight="56.0" prefWidth="492.0">
+                     <children>
+                        <HBox alignment="BOTTOM_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="42.0" prefWidth="487.0">
+                           <children>
+                              <Text fx:id="txtTaskName" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Task1">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="44.0" prefWidth="487.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #C7B8CC;" text="Remaining Days:" />
+                              <Pane prefHeight="29.0" prefWidth="5.0" />
+                              <Text fx:id="txtTaskRemainingDays" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #C7B8CC;" text="0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </HBox>
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets right="2.0" />
+   </padding>
+</AnchorPane>

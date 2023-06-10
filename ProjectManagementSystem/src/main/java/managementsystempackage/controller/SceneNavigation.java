@@ -41,12 +41,24 @@ public class SceneNavigation <T>{
         App.setRoot("view/calendar");
     }
     
+    public static void gotoUserCalendar() throws IOException{
+        App.setRoot("view/userCalendar");
+    }
+    
     public static void gotoPlannedEvent() throws IOException{
         App.setRoot("view/_adminPlannedEvents");
     }
     
     public static void gotoCompletedEvents() throws IOException{
         App.setRoot("view/adminCompletedEvents");
+    }
+    
+    public static void gotoUserCompletedEvents() throws IOException{
+        App.setRoot("view/userCompletedEvents");
+    }
+    
+    public static void gotoAssignedEvents() throws IOException{
+        App.setRoot("view/userAssignedEvents");
     }
     
     public static void gotoLoginPage() throws IOException{
