@@ -66,5 +66,15 @@ public class Events implements Serializable{
         this.end = end;
     }
     
+    public int getNumberOfTasks(){
+        int count = 0;
+        for(Task task : FileManager.taskList){
+            if(task.getTaskEventID() == getEventID()){
+                count++;
+            }
+        }
+        return count;
+    }
+    
       
 }
