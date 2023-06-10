@@ -5,6 +5,7 @@
 package managementsystempackage.controller;
 
 import java.net.URL;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -43,7 +44,7 @@ public class EventCardController implements Initializable {
     
     private IEventListener listenerInterface;
     private Events event;
-    
+    private  DateTimeFormatter formatter;
     
     
     
@@ -61,6 +62,8 @@ public class EventCardController implements Initializable {
         blend.setMode(BlendMode.SRC_ATOP);
         blend.setTopInput(whiteRectangle);
         deleteImage.setEffect(blend);
+        formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
+
     }
 
     
@@ -74,11 +77,12 @@ public class EventCardController implements Initializable {
     }
     
     public void setCardData(Events event, IEventListener listener){
+        
         this.event = event;
         this.listenerInterface = listener;
         txtEventTitle.setText(event.getEventName());
-        txtTotalTasks.setText(String.valueOf(1));
-        txtEventDueDate.setText(event.getEnd().toString());
+        txtTotalTasks.setText(String.valueOf(event.getNumberOfTasks()));
+        txtEventDueDate.setText(event.getEnd().format(formatter));
     }
     
 }
