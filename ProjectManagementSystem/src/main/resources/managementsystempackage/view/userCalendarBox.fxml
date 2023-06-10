@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#click" prefHeight="111.0" prefWidth="111.0" styleClass="calendar-box" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementsystempackage.controller.userCalendarBoxController">
+   <children>
+      <VBox fx:id="vbDisplay" layoutX="6.5" layoutY="4.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="79.0" prefWidth="68.0" spacing="2.0" AnchorPane.leftAnchor="6.0" />
+      <Text fx:id="txtNumber" layoutX="84.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="06" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="11.0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

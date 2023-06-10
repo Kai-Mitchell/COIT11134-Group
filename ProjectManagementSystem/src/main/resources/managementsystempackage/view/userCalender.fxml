@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="717.0" prefWidth="1000.0" styleClass="background" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementsystempackage.controller.userCalendarController">
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <HBox layoutX="61.0" layoutY="18.0" prefHeight="37.0" styleClass="background" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <GridPane alignment="CENTER" gridLinesVisible="true" prefHeight="37.0" prefWidth="785.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Text fill="WHITE" layoutX="41.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="calendar-header" text="MON" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+                           <children>
+                              <Text fill="WHITE" layoutX="41.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="calendar-header" text="TUE" textAlignment="CENTER" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
+                           <children>
+                              <Text fill="WHITE" layoutX="41.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="calendar-header" text="WED" textAlignment="CENTER" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3">
+                           <children>
+                              <Text fill="WHITE" layoutX="40.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="calendar-header" text="THUR" textAlignment="CENTER" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4">
+                           <children>
+                              <Text fill="WHITE" layoutX="43.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="calendar-header" text="FRI" textAlignment="CENTER" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5">
+                           <children>
+                              <Text fill="WHITE" layoutX="42.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="calendar-header" text="SAT" textAlignment="CENTER" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6">
+                           <children>
+                              <Text fill="WHITE" layoutX="41.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="calendar-header" text="SUN" textAlignment="CENTER" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </GridPane>
+               </children>
+            </HBox>
+            <GridPane fx:id="calendarGrid" layoutX="40.0" layoutY="55.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="778.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="37.0">
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" />
+               </rowConstraints>
+               <columnConstraints>
+                  <ColumnConstraints />
+               </columnConstraints>
+            </GridPane>
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </AnchorPane>
+   </center>
+   <left>
+      <Pane prefHeight="200.0" prefWidth="110.32" styleClass="transparent-background" BorderPane.alignment="CENTER" />
+   </left>
+   <right>
+      <Pane prefHeight="200.0" prefWidth="110.32" styleClass="transparent-background" BorderPane.alignment="CENTER" />
+   </right>
+   <top>
+      <VBox prefHeight="119.902" styleClass="background" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="49.174" prefWidth="200.0" styleClass="dark-background">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#gotoCalendar" prefWidth="110.32" styleClass="selected-nav-btn" text="Calendar" />
+                  <Button mnemonicParsing="false" onAction="#gotoPlannedEvent" prefWidth="139.0" styleClass="nav-btn" text="Planned Event" />
+                  <Button mnemonicParsing="false" onAction="#gotoCompletedEvents" prefWidth="139.0" styleClass="nav-btn" text="Completed Events" />
+                  <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                  <Button mnemonicParsing="false" prefWidth="110.32" styleClass="nav-btn" text="Logout" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="58.69" prefWidth="1000.0" styleClass="dark-background">
+               <VBox.margin>
+                  <Insets bottom="6.34" top="15.86" />
+               </VBox.margin>
+               <children>
+                  <Pane prefHeight="54.0" prefWidth="110.32" />
+                  <AnchorPane prefHeight="54.0" prefWidth="783.0">
+                     <children>
+                        <Button fx:id="btnPrevious" layoutX="8.0" layoutY="13.0" mnemonicParsing="false" onAction="#previous" prefHeight="29.0" prefWidth="97.0" style="-fx-background-radius: 0 0 0 12;" styleClass="action-btn" text="&lt; Previous" textFill="#c7b8cc">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnNext" layoutX="130.0" layoutY="13.0" mnemonicParsing="false" onAction="#next" prefHeight="29.0" prefWidth="80.0" style="-fx-background-radius: 0 0 12 0;" styleClass="action-btn" text="Next &gt;" textFill="#c7b8cc" />
+                        <Text fx:id="txtMonthAndYear" layoutX="252.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="header2" text="April 2023" textAlignment="CENTER" wrappingWidth="251.7265625" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="252.0" AnchorPane.rightAnchor="292.0">
+                           <font>
+                              <Font size="11.0" />
+                           </font>
+                        </Text>
+                        <Button fx:id="btnToday" layoutX="560.0" layoutY="12.0" mnemonicParsing="false" onAction="#current" prefHeight="29.0" prefWidth="80.0" style="-fx-background-radius: 12 0 12 0;" styleClass="action-btn" text="Today" textFill="#c7b8cc" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </top>
+</BorderPane>
