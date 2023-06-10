@@ -32,6 +32,7 @@ import javafx.util.Duration;
 import managementsystempackage.App;
 import managementsystempackage.model.CalendarBox;
 import managementsystempackage.model.Events;
+import managementsystempackage.model.FileManager;
 import managementsystempackage.model.IEventListener;
 import managementsystempackage.model.Task;
 /**
@@ -143,9 +144,7 @@ public class AdminPlannedEventsController implements Initializable {
 
                 @Override
                 public void onClickEvent(Events event) {
-                    Task[] tempTaskList = new Task[2];
-                    tempTaskList[0] = new Task("Task-_-", 0, LocalDate.MAX, null);
-                    tempTaskList[1] = new Task("Tasko_o", 0, LocalDate.MAX, null);
+                  
                     
                     getClickedEvent(event);
                     System.out.println(sidePane1IsShowing);
@@ -160,7 +159,7 @@ public class AdminPlannedEventsController implements Initializable {
                     if(sidePane1IsShowing){
                         
                                 
-                        for(Task task : tempTaskList ){
+                        for(Task task : FileManager.taskList ){
                             try{
                                 FXMLLoader loader = new FXMLLoader(App.class.getResource("view/taskCard.fxml")); //selecting fxml file
                                 Pane pane = loader.load(); //loading file
