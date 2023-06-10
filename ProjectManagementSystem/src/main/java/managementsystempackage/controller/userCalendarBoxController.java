@@ -67,46 +67,7 @@ public class userCalendarBoxController implements Initializable {
         txtNumber.getStyleClass().add("sunday-color");
 
     }
-    
-    public boolean userIsAnEventsTask(Events event){
-        //For All tasks
-        for(int i = 0; i<FileManager.taskCount; i++){
-            //if task's eventID = event eventID
-            if(FileManager.taskList.get(i).getTaskEventID() == event.getEventID()){
-                //For all Users in task's userList
-                for(int a=0; a<FileManager.taskList.get(i).getTaskUserList().size(); a++){
-                    //if user = current user then return true 
-                    if(FileManager.taskList.get(i).getTaskUserList().get(a).getUserID()==FileManager.currentUser){
-                        System.out.println("I have an event");
-                        System.out.println();
-                        return true;
-                    }
-                }
-            } 
-        }
-        //otherwise return false
-        return false;
-    }
-    
-    public boolean DoesEventHaveCompletedTasks(Events event){
-        //For All tasks
-        for(int i = 0; i<FileManager.taskCount; i++){
-            //if task's eventID = event eventID
-            if(FileManager.taskList.get(i).getTaskEventID() == event.getEventID()){
-                if(!FileManager.taskList.get(i).isCompleted()){
-                    event.setIsComplete(false);
-                    return false;  
-                }
-            }
-        }
-        //otherwise return false
-        event.setIsComplete(true);
-        return true;
-    }
-    
-    
 
-    
     private void loadTitle(){
         if(!boxEventArray.isEmpty()){
             executorService = Executors.newCachedThreadPool();//
@@ -114,7 +75,7 @@ public class userCalendarBoxController implements Initializable {
 
                 executorService.execute(() -> {
                     try{
-                        if((event.getStart().equals(box.getDate()) && userIsAnEventsTask(event) && !DoesEventHaveCompletedTasks(event)) || (event.getEnd().equals(box.getDate())  && userIsAnEventsTask(event) && !DoesEventHaveCompletedTasks(event))){
+                        if((event.getStart().equals(box.getDate()) && FileManager.userIsAnEventsTask(event) && !FileManager.DoesEventHaveCompletedTasks(event)) || (event.getEnd().equals(box.getDate())  && FileManager.userIsAnEventsTask(event) && !FileManager.DoesEventHaveCompletedTasks(event))){
                             box.eventArray.add(event);
 
                             FXMLLoader loader = new FXMLLoader(App.class.getResource("view/eventTitle.fxml")); //selecting fxml file

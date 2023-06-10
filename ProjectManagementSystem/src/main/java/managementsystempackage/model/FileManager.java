@@ -185,6 +185,46 @@ public class FileManager {
         //Keeps track of the number of obejcts
         taskCount = taskList.size();
     }
+    //Checks if an if a user is in Event's Task
+    public static boolean userIsAnEventsTask(Events event){
+        //For All tasks
+        for(int i = 0; i<FileManager.taskCount; i++){
+            //if task's eventID = event eventID
+            if(FileManager.taskList.get(i).getTaskEventID() == event.getEventID()){
+                //For all Users in task's userList
+                for(int a=0; a<FileManager.taskList.get(i).getTaskUserList().size(); a++){
+                    //if user = current user then return true 
+                    if(FileManager.taskList.get(i).getTaskUserList().get(a).getUserID()==FileManager.currentUser){
+                        System.out.println("I have an event");
+                        System.out.println();
+                        return true;
+                    }
+                }
+            } 
+        }
+        //otherwise return false
+        return false;
+    }
+    
+    
+    public static boolean DoesEventHaveCompletedTasks(Events event){
+        //For All tasks
+        for(int i = 0; i<FileManager.taskCount; i++){
+            //if task's eventID = event eventID
+            if(FileManager.taskList.get(i).getTaskEventID() == event.getEventID()){
+                if(!FileManager.taskList.get(i).isCompleted()){
+                    event.setIsComplete(false);
+                    return false;  
+                }
+            }
+        }
+        //otherwise return false
+        event.setIsComplete(true);
+        return true;
+    }
+    
+    
+    
     //reads files
     public static void readAllFiles() throws IOException, ClassNotFoundException{
         //Get file, read objects in file, add objects to ArrayyList
