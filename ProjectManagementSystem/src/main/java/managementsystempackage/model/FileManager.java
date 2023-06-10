@@ -178,10 +178,10 @@ public class FileManager {
         Task task = new Task(taskName, taskEventID, dueDate);
         taskList.add(task);
         //Alert popup with task info
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("task Added");
-        alert.setContentText(taskList.get(taskCount).toString());
-        Optional<ButtonType> result = alert.showAndWait();
+//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//        alert.setTitle("task Added");
+//        alert.setContentText(taskList.get(taskCount).toString());
+//        Optional<ButtonType> result = alert.showAndWait();
         //Keeps track of the number of obejcts
         taskCount = taskList.size();
     }

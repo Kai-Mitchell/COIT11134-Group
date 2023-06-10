@@ -10,19 +10,11 @@ import java.time.LocalDate;
 public class Task implements Serializable{
     private int taskID;
 
-
-    public ArrayList<User> getTaskUserList() {
-        return taskUserList;
-    }
-
-    public void setTaskUserList(ArrayList<User> taskUserList) {
-        this.taskUserList = taskUserList;
-    }
     private int taskEventID;
     private String taskName;
     private LocalDate dueDate;
     private boolean completed;
-    ArrayList<User> taskUserList = new ArrayList<>();
+    ArrayList<User> taskUserList;
     private static int nextTaskID;
     
     public Task(){}
@@ -33,8 +25,16 @@ public class Task implements Serializable{
         this.taskEventID = taskEventID;//Event to task refrence
         this.dueDate =dueDate;
         this.completed = false;
-        this.taskUserList = taskUserList;//User to task reference
+        this.taskUserList = new ArrayList<>();//User to task reference
         setTaskID();
+    }
+
+    public ArrayList<User> getTaskUserList() {
+        return taskUserList;
+    }
+
+    public void setTaskUserList(ArrayList<User> taskUserList) {
+        this.taskUserList = taskUserList;
     }
 
     public int getTaskEventID() {
