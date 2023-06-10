@@ -46,10 +46,7 @@ public class CalendarBoxController implements Initializable {
        
         
     }
-     //Temporary func that represents data
-    private void fillEventArray(){
-        boxEventArray = FileManager.eventList;
-    }
+    
     
     @FXML
     private void click(MouseEvent mouseEvent){
@@ -61,7 +58,7 @@ public class CalendarBoxController implements Initializable {
         this.listenerInterface = listenerInterface;
         this.txtNumber.setText(String.valueOf(box.getBoxNumber()));
         
-        fillEventArray();
+        boxEventArray = FileManager.eventList;
         loadTitle();
 
     }
