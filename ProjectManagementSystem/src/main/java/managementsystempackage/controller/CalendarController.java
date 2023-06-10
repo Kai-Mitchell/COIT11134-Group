@@ -8,6 +8,7 @@ package managementsystempackage.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -29,6 +30,7 @@ import managementsystempackage.App;
 import managementsystempackage.model.Calendar;
 import managementsystempackage.model.CalendarBox;
 import managementsystempackage.model.Events;
+import managementsystempackage.model.FileManager;
 import managementsystempackage.model.IEventListener;
 
 public class CalendarController implements Initializable {
@@ -57,9 +59,16 @@ public class CalendarController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
+        final LocalDate currentDate = LocalDate.now();
+
+        FileManager.addNewEvent("Hello, World!! ", currentDate, currentDate);
+        
         calendar = new Calendar();
         calendarGrid.getChildren().clear();
         boxArray = calendar.getCurrentMonthInfo();
+        txtMonthAndYear.setText(calendar.getMonthAndYear());
+
         iEventListener = new IEventListener<>() {
 
                 @Override
@@ -121,13 +130,16 @@ public class CalendarController implements Initializable {
    private void next() throws IOException{
         calendarGrid.getChildren().clear();
         boxArray = calendar.getNextMonthInfo();   
+        txtMonthAndYear.setText(calendar.getMonthAndYear());
         loadBoxes();
    }
    
    @FXML
    private void previous() throws IOException{
         calendarGrid.getChildren().clear();
-        boxArray = calendar.getPreviousMonthInfo();   
+        boxArray = calendar.getPreviousMonthInfo(); 
+        txtMonthAndYear.setText(calendar.getMonthAndYear());
+
         loadBoxes();
    }
    
@@ -136,6 +148,8 @@ public class CalendarController implements Initializable {
    private void current() throws IOException{
         calendarGrid.getChildren().clear();
         boxArray = calendar.getCurrentMonthInfo();   
+        txtMonthAndYear.setText(calendar.getMonthAndYear());
+
         loadBoxes();
    }
    
