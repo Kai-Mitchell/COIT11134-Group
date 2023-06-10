@@ -13,7 +13,7 @@
    <children>
       <HBox layoutX="-14.0" layoutY="-36.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane prefHeight="56.0" prefWidth="59.0">
+            <AnchorPane prefHeight="56.0" prefWidth="59.0" styleClass="background">
                <children>
                   <RadioButton fx:id="rbComplete" layoutX="17.0" layoutY="16.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="17.0" />
                </children>
