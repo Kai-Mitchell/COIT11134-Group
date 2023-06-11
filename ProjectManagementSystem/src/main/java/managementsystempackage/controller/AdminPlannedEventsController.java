@@ -200,9 +200,7 @@ public class AdminPlannedEventsController implements Initializable {
                         
                         
                         showSidePane1();
-                        if(currentEvent != null){
-                            loadPane1Info();
-                        }
+                        
                         
                     }
                     
@@ -439,9 +437,9 @@ public class AdminPlannedEventsController implements Initializable {
         }
         catch(NullPointerException e){
              Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Error - Empty Field");
-        alert.setContentText("Date picker must contain a value");
-        Optional<ButtonType> result = alert.showAndWait();
+            alert.setTitle("Error - Empty Field");
+            alert.setContentText("Date picker must contain a value");
+            Optional<ButtonType> result = alert.showAndWait();
         }
     }
    
@@ -576,28 +574,23 @@ public class AdminPlannedEventsController implements Initializable {
         dpStartDate.setValue(currentEvent.getStart());
         dpEndDate.setValue(currentEvent.getEnd());
         taskDisplay.getChildren().clear();
-        try{
-            for(int i = 0; i < eventArray.size(); i++){
-                if(FileManager.taskList.get(i).getTaskEventID() == currentEvent.getEventID()){
-                    try{
-                        FXMLLoader loader = new FXMLLoader(App.class.getResource("view/taskCard.fxml")); //selecting fxml file
-                        Pane pane = loader.load(); //loading file
-                        TaskCardController controller = loader.getController();//get fxml controller
-                        controller.setCardData(FileManager.taskList.get(i), iTaskListener); //send data to controller
-                        taskDisplay.getChildren().add(pane);
 
-                    }
-                    catch(IOException ioe){
-                        ioe.printStackTrace();
-                    }
+        for(int i = 0; i < FileManager.taskCount; i++){
+            if(FileManager.taskList.get(i).getTaskEventID() == currentEvent.getEventID()){
+                try{
+                    FXMLLoader loader = new FXMLLoader(App.class.getResource("view/taskCard.fxml")); //selecting fxml file
+                    Pane pane = loader.load(); //loading file
+                    TaskCardController controller = loader.getController();//get fxml controller
+                    controller.setCardData(FileManager.taskList.get(i), iTaskListener); //send data to controller
+                    taskDisplay.getChildren().add(pane); 
                 }
+                catch(IOException ioe){
+                    ioe.printStackTrace();
+                }
+
+                
             }
-        }catch(IndexOutOfBoundsException e){
-            currentTask = null;
-            
-        }
-        
-        
+        }        
     }
     
     private void showSidePane1() {
@@ -608,6 +601,7 @@ public class AdminPlannedEventsController implements Initializable {
             sidePane1IsShowing = !sidePane1IsShowing;
         
         }
+        
     }
     private void showSidePane2() {
         if(!disableAnimation1){
@@ -654,10 +648,8 @@ public class AdminPlannedEventsController implements Initializable {
     
     //Temporary func that represents data
     public void setData(){
-        System.out.println("Initialization!!!!");
         for(Events event : FileManager.eventList){
             if(!FileManager.DoesEventHaveCompletedTasks(event)){
-                System.out.println("Event Added!");
                 this.eventArray.add(event);
             }
         }
