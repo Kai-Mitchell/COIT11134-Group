@@ -25,10 +25,14 @@ public class Events implements Serializable{
         isComplete = false;
 
     }
-
-
-    public int getEventID() {
+    
+     public int getEventID() {
         return eventID;
+    }
+
+
+    public Boolean getIsComplete() {
+        return isComplete;
     }
     
     public int getNextEventID(){

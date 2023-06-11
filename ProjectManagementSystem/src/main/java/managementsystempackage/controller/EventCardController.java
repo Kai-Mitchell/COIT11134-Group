@@ -20,7 +20,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import managementsystempackage.model.Events;
+import managementsystempackage.model.FileManager;
 import managementsystempackage.model.IEventListener;
+import managementsystempackage.model.Task;
 /**
  * FXML Controller class
  *
@@ -45,7 +47,7 @@ public class EventCardController implements Initializable {
     private IEventListener listenerInterface;
     private Events event;
     private  DateTimeFormatter formatter;
-    
+    private int completedTasks;
     
     
     /**
@@ -83,6 +85,12 @@ public class EventCardController implements Initializable {
         txtEventTitle.setText(event.getEventName());
         txtTotalTasks.setText(String.valueOf(event.getNumberOfTasks()));
         txtEventDueDate.setText(event.getEnd().format(formatter));
+        for (Task t : FileManager.taskList){
+            if (t.getTaskEventID()==event.getEventID() && t.isCompleted()){
+                completedTasks++;
+            }
+        }
+        txtCompletedTasks.setText(Integer.toString(completedTasks));
     }
     
 }

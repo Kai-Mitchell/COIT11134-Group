@@ -4,6 +4,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -125,6 +126,7 @@
                   <Button mnemonicParsing="false" onAction="#gotoPlannedEvent" prefHeight="41.0" prefWidth="139.0" styleClass="nav-btn" text="Assigned Events" />
                   <Button mnemonicParsing="false" onAction="#gotoCompletedEvents" prefWidth="139.0" styleClass="nav-btn" text="Completed Events" />
                   <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                  <Label fx:id="usernameCurrent" styleClass="nav-btn" text="Label" />
                   <Button mnemonicParsing="false" onAction="#gotoLoginPage" prefWidth="110.32" styleClass="nav-btn" text="Logout" />
                </children>
             </HBox>

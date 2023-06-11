@@ -44,7 +44,20 @@ public class FileManager {
         else
             return false;
             
-    }        
+    }
+    
+    public static String currentUsername(){
+        try{
+            for (User u : userList){
+                if(u.getUserID()==currentUser){
+                    return u.getUsername();
+                }
+            }
+        } catch (Exception e){
+            System.out.println("User does not exist");
+        }
+        return "";
+    }
       
     //Method to check if all characters in an input are numeric (CQU 2023)
     public static boolean isNumeric(String param)

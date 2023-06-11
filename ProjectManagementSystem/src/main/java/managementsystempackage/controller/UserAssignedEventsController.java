@@ -21,6 +21,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -86,6 +87,9 @@ public class UserAssignedEventsController implements Initializable {
     @FXML
     private VBox vbDisplayUsers;
     
+    @FXML
+    private Label usernameCurrent;
+    
     private boolean sidePane1IsShowing;
     private boolean sidePane2IsShowing;
     private ArrayList<Events> eventArray = new ArrayList<>();
@@ -101,6 +105,7 @@ public class UserAssignedEventsController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        usernameCurrent.setText(FileManager.currentUsername());
         setData();
         disableAnimation = false; // Disable user interaction during animation
         disableAnimation1 = false;
@@ -211,9 +216,9 @@ public class UserAssignedEventsController implements Initializable {
             for(Events e : eventArray ){
                 final Events event = e;
                     try{
-                        FXMLLoader loader = new FXMLLoader(App.class.getResource("view/eventCard.fxml")); //selecting fxml file
+                        FXMLLoader loader = new FXMLLoader(App.class.getResource("view/userEventCard.fxml")); //selecting fxml file
                         Pane pane = loader.load(); //loading file
-                        EventCardController controller = loader.getController();//get fxml controller
+                        userEventCardController controller = loader.getController();//get fxml controller
                         controller.setCardData(event, iEventListener); //send data to controller
 
 

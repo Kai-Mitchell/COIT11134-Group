@@ -22,6 +22,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -108,6 +109,9 @@ public class userShowSelectedDateController implements Initializable {
     @FXML
     private VBox vbDisplayUsers;
     
+    @FXML
+    private Label usernameCurrent;
+    
     private boolean sidePane1IsShowing;
     private boolean sidePane2IsShowing;
     private boolean sidePane3IsShowing;
@@ -132,6 +136,7 @@ public class userShowSelectedDateController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        usernameCurrent.setText(FileManager.currentUsername());
         disableAnimation = false; // Disable user interaction during animation
         disableAnimation1 = false;
         disableAnimation2 = false;

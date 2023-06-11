@@ -29,6 +29,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -46,6 +47,8 @@ import managementsystempackage.model.FileManager;
 import managementsystempackage.model.IEventListener;
 
 public class userCalendarController implements Initializable {
+    @FXML
+    private Label usernameCurrent;
     
     @FXML
     private Button btnNext;
@@ -71,7 +74,7 @@ public class userCalendarController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
+        usernameCurrent.setText(FileManager.currentUsername());
         
         calendar = new Calendar();
         calendarGrid.getChildren().clear();
@@ -119,7 +122,7 @@ public class userCalendarController implements Initializable {
     
     @FXML
     private void gotoCalendar() throws IOException{
-        SceneNavigation.gotoCalendar();
+        SceneNavigation.gotoUserCalendar();
     }
    @FXML
    private void gotoAssignedEvents() throws IOException{
