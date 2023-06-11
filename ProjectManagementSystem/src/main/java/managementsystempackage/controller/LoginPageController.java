@@ -22,17 +22,12 @@ import managementsystempackage.model.*;
 /**
  * FXML Controller class
  *
- * @author renza
- */
-public class LoginPageController implements Initializable {
+ * Made by Kai Mitchell (12160908), Francis Renzaho (12170110), Carlos Gomez Mendez (12116658) COIT11134 Assignment 3B
 
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+ */
+public class LoginPageController {
+
+    
 
     @FXML
     private TextField passwordField;
@@ -42,11 +37,14 @@ public class LoginPageController implements Initializable {
     
     @FXML
     private void gotoCalendar(ActionEvent event) throws IOException {
-        
+        //check if entered credantials are correct
         for (int i = 0; i < userCount; i++){
+            //check if the entered values are correct and are valid
             if (userList.get(i).getUsername().equals(usernameField.getText()) && userList.get(i).getPassword().equals(passwordField.getText())){
                 FileManager.currentUser = userList.get(i).getUserID();
                 System.out.println(userList.get(i).getUsername());
+                
+                //check if User is admin and navigate to apropriate scene
                 if (userList.get(i).getIsAdmin() == true ){
                     App.setRoot("view/calendar");
                 }
@@ -55,6 +53,7 @@ public class LoginPageController implements Initializable {
                 }
             }
         }
+        //if the credantial are wrong, show an error massage
         if (FileManager.currentUser == -1){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Incorrect Login Information");

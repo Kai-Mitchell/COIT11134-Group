@@ -6,7 +6,8 @@ package managementsystempackage.model;
 
 import java.io.Serializable;
 import java.util.Date;
-
+//Made by Kai Mitchell (12160908), Francis Renzaho (12170110), Carlos Gomez Mendez (12116658) COIT11134 Assignment 3B
+//This class is the Super Class User and has the subclass ProjectManager
 public class User implements Serializable{
     private int userID;
     private String username;

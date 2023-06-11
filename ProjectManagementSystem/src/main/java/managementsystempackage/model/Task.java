@@ -6,7 +6,8 @@ package managementsystempackage.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.time.LocalDate;
-
+//Made by Kai Mitchell (12160908), Francis Renzaho (12170110), Carlos Gomez Mendez (12116658) COIT11134 Assignment 3B
+//The Task class, taskLists include objects of this class.
 public class Task implements Serializable{
     private int taskID;
 

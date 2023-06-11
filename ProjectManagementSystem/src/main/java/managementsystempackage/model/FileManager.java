@@ -15,11 +15,8 @@ import java.util.Optional;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 
-
-/**
- *
- * @author Blueb
- */
+//Made by Kai Mitchell (12160908), Francis Renzaho (12170110), Carlos Gomez Mendez (12116658) COIT11134 Assignment 3B
+//This class manages the global ArrayLists
 public class FileManager {
     //Instantiates an ArrayList
     //The ArrayList is populated in the create""record() method
