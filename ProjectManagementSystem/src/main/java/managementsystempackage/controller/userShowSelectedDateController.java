@@ -38,11 +38,8 @@ import managementsystempackage.model.FileManager;
 import managementsystempackage.model.IEventListener;
 import managementsystempackage.model.Task;
 import managementsystempackage.model.User;
-/**
- * FXML Controller class
- *
- * @author renza
- */
+//Made by Kai Mitchell (12160908), Francis Renzaho (12170110), Carlos Gomez Mendez (12116658) COIT11134 Assignment 3B
+//The Class controls selected date view. The class displays the events the user is assigned to and needs to complete
 public class userShowSelectedDateController implements Initializable {
 
 
@@ -112,14 +109,16 @@ public class userShowSelectedDateController implements Initializable {
     @FXML
     private Label usernameCurrent;
     
-    private boolean sidePane1IsShowing;
-    private boolean sidePane2IsShowing;
-    private boolean sidePane3IsShowing;
-    private boolean sidePaneCreateTaskIsShowing;
+    //Instance Varaiables
+    //Array to take in all events for this user
     private ArrayList<Events> eventArray = new ArrayList<>();
     private IEventListener<Events> iEventListener;
     private IEventListener<Task> iTaskListener;
     private IEventListener<User> iUserListener;
+    private boolean sidePane1IsShowing;
+    private boolean sidePane2IsShowing;
+    private boolean sidePane3IsShowing;
+    private boolean sidePaneCreateTaskIsShowing;
     private boolean disableAnimation;
     private boolean disableAnimation1;
     private boolean disableAnimation2;
@@ -135,8 +134,9 @@ public class userShowSelectedDateController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        //Set the username in the right hand corner next to login to the logged in user.
         usernameCurrent.setText(FileManager.currentUsername());
+        //Hides and perps all sidepanels
         disableAnimation = false; // Disable user interaction during animation
         disableAnimation1 = false;
         disableAnimation2 = false;
@@ -147,7 +147,7 @@ public class userShowSelectedDateController implements Initializable {
         sidePaneCreateTaskIsShowing = true;
         sidePane1.setVisible(!sidePane1IsShowing);
         showSidePane1();
-        
+        //formats date
         formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
         
         iUserListener = new IEventListener<User>() {
@@ -179,10 +179,13 @@ public class userShowSelectedDateController implements Initializable {
            
            //Event
             iEventListener = new IEventListener<>() {
+                
+                
 
+                //If the event card is clicked on
                 @Override
                 public void onClickEvent(Events event) {
-                    
+                     //If current event is diffrent from the selected event or if the event side panel is hidden
                     if(currentEvent != null && currentEvent.equals(event) || !sidePane1IsShowing ){
                         sidePane1.setVisible(true);
                         
@@ -193,19 +196,21 @@ public class userShowSelectedDateController implements Initializable {
                         }
                         
                     }
-                    
+                    //if the side pane is showing
                     if(sidePane1IsShowing){
                         
                                 
                         for(Task task : FileManager.taskList ){
+                           //for every task in global task list, add task card if event id matches
                             try{
-                                FXMLLoader loader = new FXMLLoader(App.class.getResource("view/taskCard.fxml")); //selecting fxml file
-                                Pane pane = loader.load(); //loading file
-                                TaskCardController controller = loader.getController();//get fxml controller
-                                controller.setCardData(task, iTaskListener); //send data to controller
+                                if (task.getTaskEventID() == event.getEventID()){
+                                    FXMLLoader loader = new FXMLLoader(App.class.getResource("view/taskCard.fxml")); //selecting fxml file
+                                    Pane pane = loader.load(); //loading file
+                                    TaskCardController controller = loader.getController();//get fxml controller
+                                    controller.setCardData(task, iTaskListener); //send data to controller
+                                    taskDisplay.getChildren().add(pane);  
+                                }
                                 
-
-                                taskDisplay.getChildren().add(pane);
 
                             }
                             catch(IOException ioe){
@@ -256,7 +261,7 @@ public class userShowSelectedDateController implements Initializable {
         
     } 
     
-     
+    //Buttons to go to diffrent views
    @FXML
    private void gotoCalendar() throws IOException{
        SceneNavigation.gotoUserCalendar();
@@ -274,14 +279,14 @@ public class userShowSelectedDateController implements Initializable {
    private void gotoLoginPage() throws IOException{
        SceneNavigation.gotoLoginPage();
    }
-   
+   //run showSidePane1 method
    @FXML
    private void showPanel1(){
         sidePane1.setVisible(true);
         showSidePane1();
    }
      
-   
+   //resets the event display
    private void clearEventDisplay(){
        vbDisplay.getChildren().clear();
        for(Events e : FileManager.eventList){
@@ -305,7 +310,7 @@ public class userShowSelectedDateController implements Initializable {
             }
         }
    }
-   
+   //Resets the tasks display
    private void clearTaskDisplay(){
        taskDisplay.getChildren().clear();
             
@@ -325,7 +330,7 @@ public class userShowSelectedDateController implements Initializable {
             }
         }
    }
-    
+    //Creates an event card per event in the in the date's event array
     private void addItems(){
         ExecutorService executorService = Executors.newCachedThreadPool();//
         
@@ -361,7 +366,7 @@ public class userShowSelectedDateController implements Initializable {
         }
 
     }
-  
+  //Set the events crad info
     private void loadPane1Info(){
         tfEventTitle.setText(currentEvent.getEventName());
         dpStartDate.setValue(currentEvent.getStart());
@@ -387,7 +392,7 @@ public class userShowSelectedDateController implements Initializable {
             }
         }        
     }
-    
+    //If SidePanel 1 is hidden show, else hide
     private void showSidePane1() {
         System.out.println("Show Panel3 : "+sidePane1IsShowing);
         if(!disableAnimation){
@@ -397,7 +402,7 @@ public class userShowSelectedDateController implements Initializable {
         
         }
     }
-   
+   //Sliding animation
     private void translationAnimation(double duration, Node node, double width, boolean isOpen, Runnable onFinished) {
         TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(duration), node);
         translateTransition.setByX(isOpen ? width : -width);
@@ -415,8 +420,9 @@ public class userShowSelectedDateController implements Initializable {
         System.out.println("Clicked "+event.getEventName());
     }
     
-    //Temporary func that represents data
+    //method to get all event data for that user
     public void setData(CalendarBox box){
+        //Grabs date from the the calendar box
             this.eventArray = box.eventArray;
             this.box = box;
             this.txtDate.setText(box.getDate().format(formatter));

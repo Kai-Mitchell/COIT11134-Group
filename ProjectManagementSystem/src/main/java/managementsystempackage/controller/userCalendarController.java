@@ -45,7 +45,8 @@ import managementsystempackage.model.CalendarBox;
 import managementsystempackage.model.Events;
 import managementsystempackage.model.FileManager;
 import managementsystempackage.model.IEventListener;
-
+//Made by Kai Mitchell (12160908), Francis Renzaho (12170110), Carlos Gomez Mendez (12116658) COIT11134 Assignment 3B
+//The Class controls the view User's Calender View.
 public class userCalendarController implements Initializable {
     @FXML
     private Label usernameCurrent;
@@ -73,14 +74,14 @@ public class userCalendarController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        //Set the username in the right hand corner next to login to the logged in user.
         usernameCurrent.setText(FileManager.currentUsername());
-        
+        //Create calender object
         calendar = new Calendar();
         calendarGrid.getChildren().clear();
         boxArray = calendar.getCurrentMonthInfo();
         txtMonthAndYear.setText(calendar.getMonthAndYear());
-
+        //If a user clicks on a box, navigate to userShowSelectedDate view and display the event data for that date
         iEventListener = new IEventListener<>() {
 
                 @Override
@@ -115,11 +116,7 @@ public class userCalendarController implements Initializable {
         
     }    
     
-//    @FXML
-//    private void gotoSelectedDate(MouseEvent event) throws IOException {
-//        App.setRoot("view/adminShowSelectedDate");
-//    }
-    
+    //Button to change the view
     @FXML
     private void gotoCalendar() throws IOException{
         SceneNavigation.gotoUserCalendar();
@@ -137,6 +134,8 @@ public class userCalendarController implements Initializable {
    private void gotoLoginPage() throws IOException{
        SceneNavigation.gotoLoginPage();
    }
+   
+   //buttons to move through the calender month by month
     
    @FXML
    private void next() throws IOException{
@@ -155,7 +154,7 @@ public class userCalendarController implements Initializable {
         loadBoxes();
    }
    
-   
+   //button to go to current month
    @FXML
    private void current() throws IOException{
         calendarGrid.getChildren().clear();
@@ -169,7 +168,7 @@ public class userCalendarController implements Initializable {
     public void setArray(CalendarBox[] boxArray){
         this.boxArray = boxArray;
     }
-    
+    //fills Calender boxes with data
     private void loadBoxes(){
         int columns = 0;
         int rows = 1;

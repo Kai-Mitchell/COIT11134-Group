@@ -26,7 +26,8 @@ import managementsystempackage.model.FileManager;
 import managementsystempackage.model.IEventListener;
 
 
-
+//Made by Kai Mitchell (12160908), Francis Renzaho (12170110), Carlos Gomez Mendez (12116658) COIT11134 Assignment 3B
+//The Class controls each box in user's calendar to display the events they are assigned to and need to complete
 public class userCalendarBoxController implements Initializable {
     @FXML
     private Text txtNumber;
@@ -41,23 +42,21 @@ public class userCalendarBoxController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-
-       
-        
+  
     }
     
-    
+    //If box is clicked
     @FXML
     private void click(MouseEvent mouseEvent){
         listenerInterface.onClickEvent(box);
         
     }
+    //set the box's infomation
     public void setBoxInfo(CalendarBox box, IEventListener listenerInterface){
         this.box = box;
         this.listenerInterface = listenerInterface;
         this.txtNumber.setText(String.valueOf(box.getBoxNumber()));
-        
+        //Grabs all the events
         boxEventArray = FileManager.eventList;
         loadTitle();
 
@@ -72,9 +71,11 @@ public class userCalendarBoxController implements Initializable {
         if(!boxEventArray.isEmpty()){
             executorService = Executors.newCachedThreadPool();//
             for(Events event : boxEventArray){
+                //for every event
 
                 executorService.execute(() -> {
                     try{
+                        //if user is assiged to a task inside the event that is not compeleted display the start and end date ont the calender
                         if((event.getStart().equals(box.getDate()) && FileManager.userIsAnEventsTask(event) && !FileManager.DoesEventHaveCompletedTasks(event)) || (event.getEnd().equals(box.getDate())  && FileManager.userIsAnEventsTask(event) && !FileManager.DoesEventHaveCompletedTasks(event))){
                             box.eventArray.add(event);
 

@@ -6,7 +6,8 @@ package managementsystempackage.model;
 
 import java.util.ArrayList;
 import java.util.Date;
-
+//Made by Kai Mitchell (12160908), Francis Renzaho (12170110), Carlos Gomez Mendez (12116658) COIT11134 Assignment 3B
+//This class ProjectManager is a Subclass of User
 public class ProjectManager extends User {
     private ArrayList<Events> eventsList;
     private boolean isAdmin;

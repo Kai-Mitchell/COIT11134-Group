@@ -83,11 +83,13 @@ public class userEventCardController implements Initializable {
     private void click(MouseEvent mouseEvent){
         listenerInterface.onClickEvent(event);
     }
-    
+    //set event card data
     public void setCardData(Events event, IEventListener listener){
         completedTasks = 0;
+        //for the inputed event
         this.event = event;
         this.listenerInterface = listener;
+        //Set event name, Due date, task count and task compeleted count
         txtEventTitle.setText(event.getEventName());
         txtTotalTasks.setText(String.valueOf(event.getNumberOfTasks()));
         txtEventDueDate.setText(event.getEnd().format(formatter));

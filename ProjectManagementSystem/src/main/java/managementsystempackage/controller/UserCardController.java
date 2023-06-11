@@ -14,11 +14,8 @@ import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import managementsystempackage.model.IEventListener;
 import managementsystempackage.model.User;
-/**
- * FXML Controller class
- *
- * @author renza
- */
+//Made by Kai Mitchell (12160908), Francis Renzaho (12170110), Carlos Gomez Mendez (12116658) COIT11134 Assignment 3B
+//The Class controls the view User Completed Events View.
 public class UserCardController implements Initializable {
     private IEventListener iUserListener;
     private User user;
@@ -34,14 +31,16 @@ public class UserCardController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-    
+    //Add or remove user frome event
     @FXML
     private void addOrRemoveUser(ActionEvent event) {
+        //add user
         if(btnAddUser.getText().equals("Add User")){
             iUserListener.onClickEvent(user);
             btnAddUser.setText("Remove User");
             
         }else{
+            //remove user
             iUserListener.onClickDelete(user);
             btnAddUser.setText("Add User");
         }
