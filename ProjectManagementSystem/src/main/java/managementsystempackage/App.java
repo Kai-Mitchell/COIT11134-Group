@@ -63,7 +63,7 @@ public class App extends Application {
         if (FileManager.taskList.isEmpty()){
             a = String.format(a + "%nNo Task Data Found");
         } else{
-            a = String.format(a + "%nLoaded Sales: " + FileManager.taskList.size());
+            a = String.format(a + "%nLoaded Tasks: " + FileManager.taskList.size());
         }
         //popup with Each ArrayList's Data Load Status
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

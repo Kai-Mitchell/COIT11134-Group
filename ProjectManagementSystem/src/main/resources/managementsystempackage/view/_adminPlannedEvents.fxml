@@ -123,7 +123,7 @@
                      </children>
                   </VBox>
                </children></AnchorPane>
-            <AnchorPane fx:id="sidePane2" layoutX="-441.0" layoutY="-3.0" prefHeight="601.0" prefWidth="552.0" styleClass="dark-background">
+            <AnchorPane fx:id="sidePane2" layoutX="-441.0" layoutY="-3.0" prefHeight="601.0" prefWidth="552.0" styleClass="dark-background" visible="false">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
@@ -202,7 +202,7 @@
                   </VBox>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="sidePane3" layoutX="-652.0" prefHeight="601.0" prefWidth="764.0" styleClass="background" visible="false">
+            <AnchorPane fx:id="sidePane3" layoutX="-652.0" prefHeight="601.0" prefWidth="764.0" styleClass="background">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
@@ -252,7 +252,7 @@
                                  <center>
                                     <ScrollPane focusTraversable="false" style="-fx-background-color: #432E5E;" styleClass="scroll-view">
                                        <content>
-                                          <VBox fx:id="taskDisplay1" alignment="CENTER" prefHeight="280.0" prefWidth="548.0" spacing="5.0" styleClass="background" />
+                                          <VBox fx:id="taskDisplay1" prefHeight="280.0" prefWidth="548.0" spacing="5.0" styleClass="background" />
                                        </content>
                                        <opaqueInsets>
                                           <Insets />
@@ -349,7 +349,7 @@
             <HBox alignment="CENTER_LEFT" prefHeight="49.174" prefWidth="200.0" styleClass="dark-background">
                <children>
                   <Button mnemonicParsing="false" onAction="#gotoCalendar" prefWidth="110.32" styleClass="nav-btn" text="Calendar" />
-                  <Button mnemonicParsing="false" onAction="#gotoPlannedEvent" prefHeight="41.0" prefWidth="139.0" styleClass="nav-btn" text="Planned Events" />
+                  <Button mnemonicParsing="false" onAction="#gotoPlannedEvent" prefWidth="139.0" styleClass="selected-nav-btn" text="Planned Events" />
                   <Button mnemonicParsing="false" onAction="#gotoCompletedEvents" prefHeight="41.0" prefWidth="150.0" styleClass="nav-btn" text="Completed Events" />
                   <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
                   <Button mnemonicParsing="false" onAction="#gotoLoginPage" prefWidth="110.32" styleClass="nav-btn" text="Logout" />
