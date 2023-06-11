@@ -128,7 +128,7 @@
                      </children>
                   </VBox>
                </children></AnchorPane>
-            <AnchorPane fx:id="sidePane2" layoutX="-441.0" layoutY="-3.0" prefHeight="601.0" prefWidth="552.0" styleClass="dark-background">
+            <AnchorPane fx:id="sidePane2" layoutX="-441.0" layoutY="-3.0" prefHeight="601.0" prefWidth="552.0" styleClass="dark-background" visible="false">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
@@ -257,7 +257,7 @@
                                  <center>
                                     <ScrollPane focusTraversable="false" style="-fx-background-color: #432E5E;" styleClass="scroll-view">
                                        <content>
-                                          <VBox fx:id="taskDisplay1" alignment="CENTER" prefHeight="280.0" prefWidth="548.0" spacing="5.0" styleClass="background" />
+                                          <VBox fx:id="taskDisplay1" prefHeight="280.0" prefWidth="548.0" spacing="5.0" styleClass="background" />
                                        </content>
                                        <opaqueInsets>
                                           <Insets />
@@ -280,7 +280,7 @@
                   </VBox>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="sidePaneCreate" layoutX="-441.0" prefHeight="601.0" prefWidth="552.0" styleClass="dark-background" visible="false">
+            <AnchorPane fx:id="sidePaneCreate" layoutX="-441.0" prefHeight="601.0" prefWidth="552.0" styleClass="dark-background">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
