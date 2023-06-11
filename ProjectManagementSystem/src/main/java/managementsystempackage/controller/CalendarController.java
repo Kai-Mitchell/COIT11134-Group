@@ -112,6 +112,7 @@ public class CalendarController implements Initializable {
     }
    @FXML
    private void gotoPlannedEvent() throws IOException{
+       
        SceneNavigation.gotoPlannedEvent();
    }
    @FXML

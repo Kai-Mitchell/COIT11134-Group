@@ -222,16 +222,22 @@ public class FileManager {
     
     public static boolean DoesEventHaveCompletedTasks(Events event){
         Boolean hasTasks = false;
-        //For All tasks
-        for(int i = 0; i<FileManager.taskCount; i++){
-            //if task's eventID = event eventID
-            if(FileManager.taskList.get(i).getTaskEventID() == event.getEventID()){
-                hasTasks = true;
-                if(!FileManager.taskList.get(i).isCompleted()){
-                    event.setIsComplete(false);
-                    return false;  
+        
+        try{
+            //For All tasks
+            for(int i = 0; i<FileManager.taskCount; i++){
+                //if task's eventID = event eventID
+                if(FileManager.taskList.get(i).getTaskEventID() == event.getEventID()){
+                    hasTasks = true;
+                    if(!FileManager.taskList.get(i).isCompleted()){
+                        event.setIsComplete(false);
+                        return false;  
+                    }
                 }
             }
+        }
+        catch(IndexOutOfBoundsException e){
+        
         }
         if(hasTasks){
             event.setIsComplete(true);

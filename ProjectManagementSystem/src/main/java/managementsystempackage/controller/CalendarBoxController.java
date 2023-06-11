@@ -92,7 +92,8 @@ public class CalendarBoxController implements Initializable {
 
                 executorService.execute(() -> {
                     try{
-                        if((event.getStart().equals(box.getDate()) && !DoesEventHaveCompletedTasks(event))|| (event.getEnd().equals(box.getDate())&& !DoesEventHaveCompletedTasks(event))){
+                        if((event.getStart().equals(box.getDate())  && !FileManager.DoesEventHaveCompletedTasks(event)) || (event.getEnd().equals(box.getDate())   && !FileManager.DoesEventHaveCompletedTasks(event))){
+
                             box.eventArray.add(event);
 
                             FXMLLoader loader = new FXMLLoader(App.class.getResource("view/eventTitle.fxml")); //selecting fxml file

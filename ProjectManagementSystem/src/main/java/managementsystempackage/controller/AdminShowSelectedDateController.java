@@ -245,14 +245,19 @@ public class AdminShowSelectedDateController implements Initializable {
                 @Override
                 public void onClickDelete(Events event) {
                     try {
+                        
+                        try{
+                            for(int i = 0; i < FileManager.taskCount; i++){
+                                if(event.getEventID() == FileManager.taskList.get(i).getTaskEventID()){
+                                   FileManager.taskList.remove(i);
+                                }
+                            }
+                        }catch(IndexOutOfBoundsException e){
+                            
+                        }
                         FileManager.eventList.remove(event);
                         vbDisplay.getChildren().clear();
                         clearEventDisplay();
-                        for(Task task : FileManager.taskList){
-                            if(event.getEventID() == task.getTaskEventID()){
-                               FileManager.taskList.remove(task);
-                            }
-                        }
                         
                         FileManager.saveAllFiles();
                         
