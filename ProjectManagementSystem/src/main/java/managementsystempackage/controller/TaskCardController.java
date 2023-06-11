@@ -22,7 +22,8 @@ import managementsystempackage.model.Task;
 /**
  * FXML Controller class
  *
- * @author renza
+ * Made by Kai Mitchell (12160908), Francis Renzaho (12170110), Carlos Gomez Mendez (12116658) COIT11134 Assignment 3B
+
  */
 public class TaskCardController implements Initializable {
 
@@ -40,23 +41,24 @@ public class TaskCardController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        //Adding listener to radio box
         rbComplete.selectedProperty().addListener(new ChangeListener<Boolean>() {
-    @Override
-    public void changed(ObservableValue<? extends Boolean> obs, Boolean wasPreviouslySelected, Boolean isNowSelected) {
+        @Override
+        public void changed(ObservableValue<? extends Boolean> obs, Boolean wasPreviouslySelected, Boolean isNowSelected) {
+            //when selected 
                 if (isNowSelected) { 
                     try {
-                        task.setCompleted(true);
-                        FileManager.saveAllFiles();
+                        task.setCompleted(true); //mark task as complete
+                        FileManager.saveAllFiles();//and save 
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     } catch (ClassNotFoundException ex) {
                         ex.printStackTrace();
                     }
                 } else {
-                    task.setCompleted(false);
+                    task.setCompleted(false);//mark task as not complete
                     try {
-                        FileManager.saveAllFiles();
+                        FileManager.saveAllFiles();//update save data
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     } catch (ClassNotFoundException ex) {
@@ -68,24 +70,26 @@ public class TaskCardController implements Initializable {
         
     }
     
-
+    //listen for clicks
     @FXML
     private void click(MouseEvent mouseEvent) throws IOException, ClassNotFoundException{
+        //onclick send task to Interface
         listenerInterface.onClickEvent(task);
     }
+    
     @FXML
     private void delete(MouseEvent mouseEvent){
+        //Send task to delete 
         listenerInterface.onClickDelete(task);
     }
     
-    
+    //Set task data
      public void setCardData(Task task, IEventListener listener){
         this.task = task;
         this.listenerInterface = listener;
         txtTaskName.setText(task.getTaskName());
         txtTaskRemainingDays.setText(String.valueOf(task.getNextTaskID()));
-//        //TODO add isComplete 
-//        rbComplete.setSelected(false);
+        //check if task is already complete and change status
         if(task.isCompleted()){
             rbComplete.setSelected(true);
         }else{

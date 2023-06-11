@@ -44,18 +44,14 @@ import managementsystempackage.model.User;
 /**
  * FXML Controller class
  *
- * @author renza
+ * Made by Kai Mitchell (12160908), Francis Renzaho (12170110), Carlos Gomez Mendez (12116658) COIT11134 Assignment 3B
+
  */
 public class AdminShowSelectedDateController implements Initializable {
 
 
-    @FXML
-    private BorderPane TaskBorderPane;
+    
      
-    @FXML
-    private Button btnAddEvent;
-    @FXML
-    private Button btnAddTask;
     @FXML
     private DatePicker dpEndDateCreateEvent;
     @FXML
@@ -63,18 +59,6 @@ public class AdminShowSelectedDateController implements Initializable {
 
     @FXML
     private DatePicker dpTaskDueDate1;
-    
-    @FXML
-    private Button btnAddUser;
-
-    @FXML
-    private Button btnDeleteTask1;
-    
-    @FXML
-    private Button btnAddTask1;
-
-    @FXML
-    private Button btnShowSidePaneCreate;
     @FXML
     private DatePicker dpEndDate;
 
@@ -100,8 +84,7 @@ public class AdminShowSelectedDateController implements Initializable {
 
     @FXML
     private VBox taskDisplay;
-    @FXML
-    private VBox vbDisplayUsers1;
+    
 
     @FXML
     private TextField tfDescription;
@@ -146,8 +129,12 @@ public class AdminShowSelectedDateController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        disableAnimation = false; // Disable user interaction during animation
+        /*
+        
+        // Disable user interaction during animation
+        
+        */
+        disableAnimation = false; 
         disableAnimation1 = false;
         disableAnimation2 = false;
         disableAnimation3 = false;
@@ -163,14 +150,21 @@ public class AdminShowSelectedDateController implements Initializable {
         showSidePane2();
         showSidePane3();
         showSidePaneCreate();
+        
+        
+        //set date format
         formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
+        
+        //add listeners on date pickers to make sure values are between range
         dpTaskDueDate.setOnAction(event ->  checkDateRange(dpTaskDueDate.getValue(), currentEvent.getStart(), currentEvent.getEnd()));
         dpTaskDueDate1.setOnAction(event ->  checkDateRange(dpTaskDueDate1.getValue(), currentEvent.getStart(), currentEvent.getEnd()));
-
+        
+        //Interface to handle click event from User cards
         iUserListener = new IEventListener<User>() {
                @Override
                public void onClickEvent(User user) {
                    try {
+                       //add user and save
                        currentTask.getUserList().add(user);
                        FileManager.saveAllFiles();
                    } catch (IOException ex) {
@@ -184,7 +178,7 @@ public class AdminShowSelectedDateController implements Initializable {
                public void onClickDelete(User user) {
                    try {
 //                      
-                       
+                       //look for user, remove and save file
                        for(User u : currentTask.getUserList()){
                            if(u.getUserID() == user.getUserID()){
                                 currentTask.getUserList().remove(u);
@@ -200,12 +194,12 @@ public class AdminShowSelectedDateController implements Initializable {
            };
            try{
            
-           //Event
+           //Interface handle click events for Event Cards
             iEventListener = new IEventListener<>() {
 
                 @Override
                 public void onClickEvent(Events event) throws IndexOutOfBoundsException {
-                    
+                    //open sidepane 1 if event is not empty or not showing
                     if(currentEvent != null && currentEvent.equals(event) || !sidePane1IsShowing ){
                         sidePane1.setVisible(true);
                         showSidePane1();
@@ -215,7 +209,7 @@ public class AdminShowSelectedDateController implements Initializable {
                     
                     if(sidePane1IsShowing && currentEvent != null){
                         
-                        taskDisplay.getChildren().clear();
+                        taskDisplay.getChildren().clear(); //clear task display
 
                         for(Task task : FileManager.taskList ){
                             if(task.getTaskEventID() == currentEvent.getEventID()){
@@ -238,7 +232,7 @@ public class AdminShowSelectedDateController implements Initializable {
                         }       
                     }
                     
-                    currentEvent = event;
+                    currentEvent = event; //set current event
                     loadPane1Info();
                     
                     
@@ -249,6 +243,7 @@ public class AdminShowSelectedDateController implements Initializable {
                     try {
                         
                         try{
+                            //remove task in event
                             for(int i = 0; i < FileManager.taskCount; i++){
                                 if(event.getEventID() == FileManager.taskList.get(i).getTaskEventID()){
                                    FileManager.taskList.remove(i);
@@ -257,6 +252,7 @@ public class AdminShowSelectedDateController implements Initializable {
                         }catch(IndexOutOfBoundsException e){
                             
                         }
+                        //then remove event
                         FileManager.eventList.remove(event);
                         vbDisplay.getChildren().clear();
                         clearEventDisplay();
@@ -280,13 +276,13 @@ public class AdminShowSelectedDateController implements Initializable {
                e.printStackTrace();
            }
             
-            //Task
+            //Interface handle click event for TAsk Card
             iTaskListener = new IEventListener<Task>() {
             @Override
             public void onClickEvent(Task task) {
 
                 if(currentTask != null && currentTask.equals(task) || !sidePane2IsShowing){
-
+                    //animate side pane 2
                     sidePane2.setVisible(true);
                     showSidePane2();
                    
@@ -296,10 +292,15 @@ public class AdminShowSelectedDateController implements Initializable {
 
                 
                 if(currentTask != null){
+                    //set text field data
                    tfDescription.setText(currentTask.getTaskName());
                    dpTaskDueDate.setValue(currentTask.getDueDate());
 
+                   //clear display
                    vbDisplayUsers.getChildren().clear();
+                   
+                   
+                   //check if is assigned to task
                    for(User user : FileManager.userList){
                        String btnName = "Add User";
                        for(User userTask : currentTask.getUserList()){
@@ -338,7 +339,12 @@ public class AdminShowSelectedDateController implements Initializable {
             
         
     } 
+   
+    /*
     
+    Navigation Functions
+    
+    */
      
    @FXML
    private void gotoCalendar() throws IOException{
@@ -360,11 +366,12 @@ public class AdminShowSelectedDateController implements Initializable {
    
    @FXML
    private void deleteTask() throws ClassNotFoundException, IOException{
+       //delete task
         FileManager.taskList.remove(currentTask);
-        clearTaskDisplay();
-        showPanel2();
-        clearEventDisplay();
-        FileManager.saveAllFiles();
+        clearTaskDisplay();//clear display
+        showPanel2();//animate panel2
+        clearEventDisplay();//clear event display
+        FileManager.saveAllFiles();//save
       
    
    }
@@ -428,15 +435,18 @@ public class AdminShowSelectedDateController implements Initializable {
                
                 FileManager.addNewtask(tfDescription1.getText(), currentEvent.getEventID(), dpTaskDueDate1.getValue());
                 FileManager.saveAllFiles();
-                
+                //get last created task and set it as current
                 Task newTask = FileManager.taskList.get(FileManager.taskCount-1);
                 sidePaneCreate.setVisible(false);
                 sidePane1.setVisible(true);
                 showSidePaneCreate();
                 currentTask = FileManager.taskList.get(FileManager.taskCount-1);
-
+                
+                //set text field with current task
                 tfDescription1.setText(currentTask.getTaskName());
                 dpTaskDueDate1.setValue(currentTask.getDueDate());
+                
+                //load and display task card
                 FXMLLoader loader = new FXMLLoader(App.class.getResource("view/taskCard.fxml"));
                 Pane pane = loader.load();
                 TaskCardController controller = loader.getController();
@@ -451,6 +461,7 @@ public class AdminShowSelectedDateController implements Initializable {
             }
         }
         catch(NullPointerException e){
+            //show error is datepicker is empty
              Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Error - Empty Field");
             alert.setContentText("Date picker must contain a value");
@@ -462,7 +473,7 @@ public class AdminShowSelectedDateController implements Initializable {
     
    @FXML
    private void addNewEvent(ActionEvent event) throws IOException, ClassNotFoundException{
-       //Valid inputs
+       //Validate inputs
        if(!tfTitleCreateEvent.getText().isBlank() && !dpStartDateCreateEvent.getValue().toString().isBlank() && !dpEndDateCreateEvent.getValue().toString().isBlank()){
             FileManager.addNewEvent(tfTitleCreateEvent.getText(), dpStartDateCreateEvent.getValue(), dpEndDateCreateEvent.getValue()); // create new Event
             FileManager.saveAllFiles();//save event
@@ -480,7 +491,7 @@ public class AdminShowSelectedDateController implements Initializable {
             FXMLLoader loader = new FXMLLoader(App.class.getResource("view/EventCard.fxml"));
             Pane pane = loader.load();
             EventCardController controller = loader.getController();
-            
+            controller.setCardData(currentEvent, iEventListener);
             Platform.runLater(() ->{
                 vbDisplay.getChildren().add(pane);
             });
@@ -496,7 +507,8 @@ public class AdminShowSelectedDateController implements Initializable {
    }
    
    private void clearEventDisplay(){
-       vbDisplay.getChildren().clear();
+       
+       vbDisplay.getChildren().clear();//clear display
        for(Events e : FileManager.eventList){
             if(e.getStart().equals(box.getDate()) || e.getEnd().equals(box.getDate())){
 
@@ -506,6 +518,7 @@ public class AdminShowSelectedDateController implements Initializable {
                     EventCardController controller = loader.getController();//get fxml controller
                     controller.setCardData(e, iEventListener); //send data to controller
                     Platform.runLater(() -> {
+                        //add event card
                         vbDisplay.getChildren().add(pane);
 
                     });
@@ -520,7 +533,7 @@ public class AdminShowSelectedDateController implements Initializable {
    }
    
    private void clearTaskDisplay() throws IndexOutOfBoundsException{
-       taskDisplay.getChildren().clear();
+       taskDisplay.getChildren().clear();//clear
         if(!FileManager.taskList.isEmpty()){
         
             for(Task task : FileManager.taskList){
@@ -547,8 +560,6 @@ public class AdminShowSelectedDateController implements Initializable {
         
         
         if(!eventArray.isEmpty()){
-           // getChosenCardView(cardViewArray.get(0));
-           //User
            
             
             for(Events e : eventArray ){
@@ -581,6 +592,7 @@ public class AdminShowSelectedDateController implements Initializable {
     }
   
     private void loadPane1Info(){
+        //collect and set data
         tfEventTitle.setText(currentEvent.getEventName());
         dpStartDate.setValue(currentEvent.getStart());
         dpEndDate.setValue(currentEvent.getEnd());
@@ -610,6 +622,10 @@ public class AdminShowSelectedDateController implements Initializable {
         
         
     }
+    
+    /*
+    Animations
+    */
     
     private void showSidePane1() {
         System.out.println("Show Panel3 : "+sidePane1IsShowing);
@@ -647,6 +663,7 @@ public class AdminShowSelectedDateController implements Initializable {
         }
     }
     private void translationAnimation(double duration, Node node, double width, boolean isOpen, Runnable onFinished) {
+        //move panel from left to right or right to right basing whether it's open or not 
         TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(duration), node);
         translateTransition.setByX(isOpen ? width : -width);
         translateTransition.setOnFinished(event -> {
@@ -658,26 +675,26 @@ public class AdminShowSelectedDateController implements Initializable {
         translateTransition.play();
     }
     
-    private void getClickedEvent(Events event){
-        
-        System.out.println("Clicked "+event.getEventName());
-    }
+   
     
-    //Temporary func that represents data
+    
     public void setData(CalendarBox box){
-            this.eventArray = box.eventArray;
-            this.box = box;
-            this.txtDate.setText(box.getDate().format(formatter));
-            addItems();
-            
+        
+        //collect and set data
+        this.eventArray = box.eventArray;
+        this.box = box;
+        this.txtDate.setText(box.getDate().format(formatter));
+        addItems();
+
 
     }
     
     
     private void checkDateRange(LocalDate selectedDate, LocalDate startDate, LocalDate endDate) {
-        
+        //check if the selected date of the task is between start and end date of the event 
         if (selectedDate != null && startDate != null && endDate != null) {
            if (!(selectedDate.isAfter(startDate.minusDays(1)) && selectedDate.isBefore(endDate.plusDays(1)))) {
+               //show alert box if selected date is after or before the due date
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Selected date is not within the range.");
                 alert.setContentText("Date: Must be between "+ currentEvent.getStart().toString() + " And "+currentEvent.getEnd().toString());

@@ -32,7 +32,12 @@ import managementsystempackage.model.CalendarBox;
 import managementsystempackage.model.Events;
 import managementsystempackage.model.FileManager;
 import managementsystempackage.model.IEventListener;
+/**
+ * FXML Controller class
+ *
+ * Made by Kai Mitchell (12160908), Francis Renzaho (12170110), Carlos Gomez Mendez (12116658) COIT11134 Assignment 3B
 
+ */
 public class CalendarController implements Initializable {
     
     @FXML
@@ -58,19 +63,18 @@ public class CalendarController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+    
+        calendar = new Calendar();//initialize Calendar object
+        calendarGrid.getChildren().clear();//clear existing items 
+        boxArray = calendar.getCurrentMonthInfo(); // genereate month data
+        txtMonthAndYear.setText(calendar.getMonthAndYear()); //set current month
         
-        
-        calendar = new Calendar();
-        calendarGrid.getChildren().clear();
-        boxArray = calendar.getCurrentMonthInfo();
-        txtMonthAndYear.setText(calendar.getMonthAndYear());
-
+        //Interface that handles click events for calendar boxes
         iEventListener = new IEventListener<>() {
 
                 @Override
                 public void onClickEvent(CalendarBox box) {
-                   
+                   //load adminshowselecteddate and set box data
                     try {
                         
                         SceneNavigation<AdminShowSelectedDateController> sceneNav = new SceneNavigation<>("adminShowSelectedDate");//load file
@@ -101,10 +105,11 @@ public class CalendarController implements Initializable {
         
     }    
     
-//    @FXML
-//    private void gotoSelectedDate(MouseEvent event) throws IOException {
-//        App.setRoot("view/adminShowSelectedDate");
-//    }
+/**
+ * 
+ * button navigation 
+ * @throws IOException 
+ */
     
     @FXML
     private void gotoCalendar() throws IOException{
@@ -152,7 +157,7 @@ public class CalendarController implements Initializable {
         loadBoxes();
    }
    
-
+   //get and set box array
     public void setArray(CalendarBox[] boxArray){
         this.boxArray = boxArray;
     }
@@ -160,29 +165,31 @@ public class CalendarController implements Initializable {
     private void loadBoxes(){
         int columns = 0;
         int rows = 1;
-            try {
-                //Load cards into the grid
-                for(CalendarBox box : boxArray){
-            
-                    FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("view/calendarBox.fxml"));
-                    Pane pane = fxmlLoader.load();
-                    CalendarBoxController controller = fxmlLoader.getController();
-                    controller.setBoxInfo(box, iEventListener);
+        try {
+            //Load cards into the grid
+            for(CalendarBox box : boxArray){
+                //For each box load and set data
+                FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("view/calendarBox.fxml"));
+                Pane pane = fxmlLoader.load();
+                CalendarBoxController controller = fxmlLoader.getController();
+                controller.setBoxInfo(box, iEventListener);
 
-                    if(columns == 6){
-                        controller.changeColor();
-                    }
-
-                    if(columns == 7){
-                        columns =0;
-                        rows++;
-
-                    }
-
-                    calendarGrid.add(pane, columns++, rows);
+                if(columns == 6){
+                    //change color for sunday
+                    controller.changeColor();
                 }
-            } catch (IOException ex) {
-                ex.printStackTrace();
+
+                if(columns == 7){
+                    //create new row
+                    columns =0;
+                    rows++;
+
+                }
+                //add box
+                calendarGrid.add(pane, columns++, rows);
             }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }   
     }
 }

@@ -26,7 +26,8 @@ import managementsystempackage.model.Task;
 /**
  * FXML Controller class
  *
- * @author renza
+ * Made by Kai Mitchell (12160908), Francis Renzaho (12170110), Carlos Gomez Mendez (12116658) COIT11134 Assignment 3B
+
  */
 public class EventCardController implements Initializable {
 
@@ -64,6 +65,7 @@ public class EventCardController implements Initializable {
         blend.setMode(BlendMode.SRC_ATOP);
         blend.setTopInput(whiteRectangle);
         deleteImage.setEffect(blend);
+        //changing date format
         formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
 
     }
@@ -71,13 +73,15 @@ public class EventCardController implements Initializable {
     
     @FXML
     private void click(MouseEvent mouseEvent) throws IndexOutOfBoundsException{
-        listenerInterface.onClickEvent(event);
+        
+        listenerInterface.onClickEvent(event); //send event
     }
     @FXML
     private void delete(MouseEvent mouseEvent){
-        listenerInterface.onClickDelete(event);
+        listenerInterface.onClickDelete(event); //send event
     }
     
+    //get and set received data
     public void setCardData(Events event, IEventListener listener){
         
         this.event = event;
@@ -85,6 +89,7 @@ public class EventCardController implements Initializable {
         txtEventTitle.setText(event.getEventName());
         txtTotalTasks.setText(String.valueOf(event.getNumberOfTasks()));
         txtEventDueDate.setText(event.getEnd().format(formatter));
+        //check completed tasks
         for (Task t : FileManager.taskList){
             if (t.getTaskEventID()==event.getEventID() && t.isCompleted()){
                 completedTasks++;

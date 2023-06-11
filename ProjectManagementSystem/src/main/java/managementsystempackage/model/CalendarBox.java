@@ -16,6 +16,7 @@ public class CalendarBox {
     public CalendarBox() {
     }
     public CalendarBox(int boxNumber, LocalDate date) {
+        
         this.boxNumber = boxNumber;
         this.date = date;
         eventArray = new ArrayList<>();

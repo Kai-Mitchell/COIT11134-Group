@@ -11,20 +11,20 @@ import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
 
 /**
+ * FXML Controller class
  *
- * @author renza
+ * Made by Kai Mitchell (12160908), Francis Renzaho (12170110), Carlos Gomez Mendez (12116658) COIT11134 Assignment 3B
+
  */
-public class EventTitleController implements Initializable{
+public class EventTitleController{
      @FXML
     private Text txtTitle;
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-
-    }
     
+    //set data
     public void setTitle(String title){
+        //check length and display text basing on lenght
         if(title.length() <= 10){
-            this.txtTitle.setText(title + "..");
+            this.txtTitle.setText(title);
         }else{
             this.txtTitle.setText(title.substring(0, 10)+"..");
         }

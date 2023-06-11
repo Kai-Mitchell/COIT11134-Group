@@ -29,7 +29,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
-import javafx.scene.text.Text;
 import javafx.util.Duration;
 import managementsystempackage.App;
 import managementsystempackage.model.Events;
@@ -40,7 +39,8 @@ import managementsystempackage.model.User;
 /**
  * FXML Controller class
  *
- * @author renza
+ * Made by Kai Mitchell (12160908), Francis Renzaho (12170110), Carlos Gomez Mendez (12116658) COIT11134 Assignment 3B
+
  */
 public class AdminCompletedEventController implements Initializable {
 
@@ -650,7 +650,6 @@ public class AdminCompletedEventController implements Initializable {
         System.out.println("Clicked "+event.getEventName());
     }
     
-    //Temporary func that represents data
     public void setData(){
         for(Events event : FileManager.eventList){
             if(FileManager.DoesEventHaveCompletedTasks(event)){
@@ -666,9 +665,10 @@ public class AdminCompletedEventController implements Initializable {
     }
   
     private void checkDateRange(LocalDate selectedDate, LocalDate startDate, LocalDate endDate) {
-        
+        //check if the selected date of the task is between start and end date of the event 
         if (selectedDate != null && startDate != null && endDate != null) {
            if (!(selectedDate.isAfter(startDate.minusDays(1)) && selectedDate.isBefore(endDate.plusDays(1)))) {
+               //show alert box if selected date is after or before the due date
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Selected date is not within the range.");
                 alert.setContentText("Date: Must be between "+ currentEvent.getStart().toString() + " And "+currentEvent.getEnd().toString());
@@ -679,8 +679,8 @@ public class AdminCompletedEventController implements Initializable {
             }
         } 
         
+        
     }
-    
     
     
 }

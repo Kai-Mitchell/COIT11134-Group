@@ -185,7 +185,9 @@ public class UserCompletedEventsController implements Initializable {
                     }
                     
                     currentEvent = event;
-                    
+                    tfEventTitle.setText(currentEvent.getEventName());
+                    dpStartDate.setValue(currentEvent.getStart());
+                    dpEndDate.setValue(currentEvent.getEnd());
                 }
 
                 @Override

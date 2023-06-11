@@ -26,6 +26,7 @@ public class App extends Application {
         scene = new Scene(loadFXML("view/loginPage"), 1000, 717);
         stage.setScene(scene);
         stage.setResizable(false);
+        stage.setTitle("Project Management System 1.1");
         stage.show();
         loadingFiles();
     }
