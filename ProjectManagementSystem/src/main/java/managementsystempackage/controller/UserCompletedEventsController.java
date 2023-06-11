@@ -178,6 +178,9 @@ public class UserCompletedEventsController implements Initializable {
 //                        showSidePane2();
                     }
                     currentEvent = event; 
+                    tfEventTitle.setText(currentEvent.getEventName());
+                    dpStartDate.setValue(currentEvent.getStart());
+                    dpEndDate.setValue(currentEvent.getEnd());
                 }
                 //Function not used however the overide is need for event listner to work
                 public void onClickDelete(Events event) {

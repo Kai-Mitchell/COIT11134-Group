@@ -192,7 +192,9 @@ public class UserAssignedEventsController implements Initializable {
                     }
                     
                     currentEvent = event;
-                    
+                    tfEventTitle.setText(currentEvent.getEventName());
+                    dpStartDate.setValue(currentEvent.getStart());
+                    dpEndDate.setValue(currentEvent.getEnd());
                 }
                 //Function not used however the overide is need for event listner to work
                 @Override
